@@ -1,0 +1,1 @@
+web: gunicorn everybodys_recipes.wsgi
