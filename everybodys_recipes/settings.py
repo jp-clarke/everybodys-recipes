@@ -31,7 +31,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    '8000-jpclarke-everybodysreci-wukgqdr4al9.ws-eu101.gitpod.io',
+    '8000-jpclarke-everybodysreci-wukgqdr4al9.ws-eu102.gitpod.io',
     'everybodys-recipes-jc-c4eee66003ba.herokuapp.com',
 ]
 
@@ -46,9 +46,32 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'cloudinary_storage',
     'django.contrib.staticfiles',
+    'django_jsonform',
     'cloudinary',
+    'django_summernote',
     'blog',
 ]
+
+SUMMERNOTE_CONFIG = {
+    # https://github.com/summernote/django-summernote#options
+
+    'iframe': True,
+    'summernote': {
+        'airMode': False,
+        'width': '100%',
+        'height': '250',
+        'toolbar': [
+            ['style', ['style']],
+            ['font', ['bold', 'italic', 'underline', 'clear']],
+            ['fontname', ['fontname']],
+            ['color', ['color']],
+            ['para', ['ul', 'ol', 'paragraph']],
+            ['table', ['table']],
+            ['insert', ['link', 'picture', 'video']],
+            ['view', ['fullscreen', 'codeview', 'help']],
+        ],
+    },
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

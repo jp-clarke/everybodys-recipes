@@ -1,5 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django_jsonform.models.fields import ArrayField
+# https://django-jsonform.readthedocs.io/en/latest/
 from cloudinary.models import CloudinaryField
 
 STATUS = ((0, 'Draft'), (1, 'Published'))
@@ -14,8 +16,6 @@ class Recipe(models.Model):
     date_created = models.DateTimeField(auto_now_add=True)
     recipe_photo = CloudinaryField('image', default='placeholder')
     description = models.TextField()
-    ingredients = models.TextField()  # create list
-    instructions = models.TextField()  # create list
     favourited = models.ManyToManyField(
         User, related_name='favourite_recipes', blank=True
     )
@@ -29,6 +29,27 @@ class Recipe(models.Model):
 
     def favourited_count(self):
         return self.favourited.count
+
+
+class Ingredient(models.Model):
+    recipe = models.ForeignKey(
+        Recipe, on_delete=models.CASCADE, related_name='ingredients'
+    )
+    amount = models.CharField(max_length=50)
+    ingredient = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.title
+
+
+class Instruction(models.Model):
+    recipe = models.ForeignKey(
+        Recipe, on_delete=models.CASCADE, related_name="instructions"
+    )
+    step = models.TextField()
+
+    def __str__(self):
+        return self.title
 
 
 class Comment(models.Model):
