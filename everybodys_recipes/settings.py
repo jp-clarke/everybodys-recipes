@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'django_jsonform',
     'cloudinary',
     'django_summernote',
+    'ordered_model',
     'blog',
 ]
 
@@ -59,16 +60,16 @@ SUMMERNOTE_CONFIG = {
     'summernote': {
         'airMode': False,
         'width': '100%',
-        'height': '250',
+        'height': '150',
         'toolbar': [
-            ['style', ['style']],
+            # ['style', ['style']],
             ['font', ['bold', 'italic', 'underline', 'clear']],
-            ['fontname', ['fontname']],
-            ['color', ['color']],
-            ['para', ['ul', 'ol', 'paragraph']],
-            ['table', ['table']],
-            ['insert', ['link', 'picture', 'video']],
-            ['view', ['fullscreen', 'codeview', 'help']],
+            # ['fontname', ['fontname']],
+            # ['color', ['color']],
+            ['para', ['ol']],
+            # ['table', ['table']],
+            # ['insert', ['link', 'picture', 'video']],
+            # ['view', ['fullscreen', 'codeview', 'help']],
         ],
     },
 }

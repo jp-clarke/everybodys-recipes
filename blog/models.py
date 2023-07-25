@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
-from django_jsonform.models.fields import ArrayField
+from ordered_model.models import OrderedModel
+# from django_jsonform.models.fields import ArrayField
 # https://django-jsonform.readthedocs.io/en/latest/
 from cloudinary.models import CloudinaryField
 
@@ -39,17 +40,30 @@ class Ingredient(models.Model):
     ingredient = models.CharField(max_length=100)
 
     def __str__(self):
-        return self.title
+        return self.ingredient
 
 
 class Instruction(models.Model):
-    recipe = models.ForeignKey(
+    recipe = models.OneToOneField(
         Recipe, on_delete=models.CASCADE, related_name="instructions"
     )
-    step = models.TextField()
+    steps = models.TextField()
 
     def __str__(self):
-        return self.title
+        return self.steps
+
+
+# class InstructionThroughModel(OrderedModel):
+#     recipe = models.ForeignKey(
+#         Recipe, on_delete=models.CASCADE
+#     )
+#     step = models.ForeignKey(
+#         Instruction, on_delete=models.CASCADE
+#     )
+#     order_with_respect_to = 'step'
+
+# #     class Meta:
+# #         ordering = ('step', 'order')
 
 
 class Comment(models.Model):

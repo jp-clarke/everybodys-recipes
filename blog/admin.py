@@ -1,4 +1,5 @@
 from django.contrib import admin
+# from ordered_model.admin import OrderedTabularInline, OrderedInlineModelAdminMixin
 from .models import Recipe, Ingredient, Instruction, Comment
 from django_summernote.admin import SummernoteModelAdmin
 from django_summernote.admin import SummernoteInlineModelAdmin
@@ -13,14 +14,21 @@ class IngredientInline(admin.TabularInline):
 
 class InstructionInline(admin.TabularInline, SummernoteInlineModelAdmin):
 
-    summernote_fields = ('step')
+    summernote_fields = ('steps')
     model = Instruction
+    # fields = ('step', 'move_up_down_links',)
+    # readonly_fields = ('move_up_down_links',)
+    # ordering = ('order',)
     extra = 1
 
 
 @admin.register(Recipe)
 class RecipeAdmin(SummernoteModelAdmin):
 
+    prepopulated_fields = {'slug': ('title',)}
+    list_filter = ('status', 'date_created')
+    list_display = ('title', 'author', 'status', 'date_created')
+    search_fields = ['title',]
     summernote_fields = ('description')
     inlines = (
         IngredientInline,
@@ -28,4 +36,16 @@ class RecipeAdmin(SummernoteModelAdmin):
     )
 
 
-admin.site.register(Comment)
+@admin.register(Comment)
+class CommentAdmin(admin.ModelAdmin):
+
+    list_display = ('name', 'body', 'recipe', 'date_created', 'approved')
+    list_filter = ('approved', 'date_created')
+    search_filter = ('name', 'body', 'recipe')
+    actions = ['approve_comments']
+
+    def approve_comments(self, request, queryset):
+        queryset.update(approved=True)
+
+
+admin.site.register(Ingredient)
