@@ -15,7 +15,7 @@ class RecipeDetail(View):
     def get(self, request, slug, *args, **kwargs):
         queryset = Recipe.objects.filter(status=1)
         recipe = get_object_or_404(queryset, slug=slug)
-        item = recipe.ingredients
+        # item = recipe.ingredients
         comments = recipe.comments.filter(approved=True).order_by('date_created')
         favourited = False
         if recipe.favourited.filter(id=self.request.user.id).exists():
@@ -26,7 +26,7 @@ class RecipeDetail(View):
             'recipe_detail.html',
             {
                 'recipe': recipe,
-                'item': item,
+                # 'item': item,
                 'comments': comments,
                 'favourited': favourited
             },

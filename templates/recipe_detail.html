@@ -13,10 +13,9 @@
             <h3>Description</h3>
             {{ recipe.description | safe }}
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-sm-6">
                     <div class="card">
                         <h3>Ingredients</h3>
-                        <!-- {{ item.all }} -->
                         {% for ingredient in recipe.ingredients.all %}
                         <div class="row text-center">
                             <div class="col-5">
@@ -29,11 +28,26 @@
                         {% endfor %}
                     </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-sm-6">
                     <div class="card">
                         <h3>Instructions</h3>
                         {{ recipe.instructions | safe }}
                     </div>
+                </div>
+            </div>
+            <h3>Comments</h3>
+            <div class="row">
+                <div class="card text-start">
+                    {% for comment in comments %}
+                    <p class="fs-5 fw-bold">
+                        {{ comment.name }}
+                        <span class="fs-6 fw-light">commented on {{ comment.date_created }}</span>
+                    </p>
+                    <p>
+                        {{ comment.body }}
+                    </p>
+                    <hr>
+                    {% endfor %}
                 </div>
             </div>
         </div>
