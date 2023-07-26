@@ -8,11 +8,11 @@
         {% for recipe in recipe_list %}
         <div class="col-md-4">
             <div class="card mb-4">
-                <a href="#" class="btn">
+                <a href="{% url 'recipe_detail' recipe.slug %}" class="btn">
                     <img src="{{ recipe.recipe_photo.url }}" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h3 class="card-title">{{ recipe.title }}</h3>
-                        <h4 class="card-subtitle">Author: {{ recipe.author }}</h4>
+                        <h4 class="card-subtitle">By: {{ recipe.author }}</h4>
                         <p class="card-text">{{ recipe.description | safe }}</p>
                     </div>
                 </a>

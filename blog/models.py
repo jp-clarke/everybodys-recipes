@@ -32,18 +32,21 @@ class Recipe(models.Model):
         return self.favourited.count
 
 
-class Ingredient(models.Model):
+class Ingredients(models.Model):
     recipe = models.ForeignKey(
         Recipe, on_delete=models.CASCADE, related_name='ingredients'
     )
     amount = models.CharField(max_length=50)
     ingredient = models.CharField(max_length=100)
 
+    class Meta:
+        verbose_name_plural = 'Ingredients'
+
     def __str__(self):
         return self.ingredient
 
 
-class Instruction(models.Model):
+class Instructions(models.Model):
     recipe = models.OneToOneField(
         Recipe, on_delete=models.CASCADE, related_name="instructions"
     )

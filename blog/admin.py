@@ -1,6 +1,6 @@
 from django.contrib import admin
 # from ordered_model.admin import OrderedTabularInline, OrderedInlineModelAdminMixin
-from .models import Recipe, Ingredient, Instruction, Comment
+from .models import Recipe, Ingredients, Instructions, Comment
 from django_summernote.admin import SummernoteModelAdmin
 from django_summernote.admin import SummernoteInlineModelAdmin
 ''' https://github.com/summernote/django-summernote/issues/38 '''
@@ -8,14 +8,14 @@ from django_summernote.admin import SummernoteInlineModelAdmin
 
 class IngredientInline(admin.TabularInline):
 
-    model = Ingredient
+    model = Ingredients
     extra = 1
 
 
 class InstructionInline(admin.TabularInline, SummernoteInlineModelAdmin):
 
     summernote_fields = ('steps')
-    model = Instruction
+    model = Instructions
     # fields = ('step', 'move_up_down_links',)
     # readonly_fields = ('move_up_down_links',)
     # ordering = ('order',)
@@ -48,4 +48,4 @@ class CommentAdmin(admin.ModelAdmin):
         queryset.update(approved=True)
 
 
-admin.site.register(Ingredient)
+admin.site.register(Ingredients)
