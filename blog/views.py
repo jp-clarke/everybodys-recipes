@@ -1,5 +1,6 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, reverse
 from django.views import generic, View
+from django.http import HttpResponseRedirect
 from .models import Recipe
 from .forms import CommentForm
 
@@ -65,3 +66,15 @@ class RecipeDetail(View):
                 'comment_form': CommentForm()
             },
         )
+
+
+class RecipeFavourite(View):
+
+    def post(self, request, slug):
+        recipe = get_object_or_404(Recipe, slug=slug)
+        if recipe.favourited.filter(id=self.request.user.id).exists():
+            recipe.favourited.remove(request.user)
+        else:
+            recipe.favourited.add(request.user)
+
+        return HttpResponseRedirect(reverse('recipe_detail', args=[slug]))
