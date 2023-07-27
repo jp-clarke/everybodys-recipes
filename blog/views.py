@@ -36,6 +36,7 @@ class RecipeDetail(View):
         )
 
     def post(self, request, slug, *args, **kwargs):
+
         queryset = Recipe.objects.filter(status=1)
         recipe = get_object_or_404(queryset, slug=slug)
         comments = recipe.comments.filter(
@@ -72,7 +73,8 @@ class RecipeFavourite(View):
 
     def post(self, request, slug):
         recipe = get_object_or_404(Recipe, slug=slug)
-        if recipe.favourited.filter(id=self.request.user.id).exists():
+
+        if recipe.favourited.filter(id=request.user.id).exists():
             recipe.favourited.remove(request.user)
         else:
             recipe.favourited.add(request.user)

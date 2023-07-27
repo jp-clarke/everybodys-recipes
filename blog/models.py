@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-from ordered_model.models import OrderedModel
+# from ordered_model.models import OrderedModel
 # from django_jsonform.models.fields import ArrayField
 # https://django-jsonform.readthedocs.io/en/latest/
 from cloudinary.models import CloudinaryField
@@ -18,7 +18,7 @@ class Recipe(models.Model):
     recipe_photo = CloudinaryField('image', default='placeholder')
     description = models.TextField()
     favourited = models.ManyToManyField(
-        User, related_name='favourite_recipes', blank=True
+        User, related_name='favourited_recipes', blank=True
     )
     status = models.IntegerField(choices=STATUS, default=0)
 
@@ -29,7 +29,7 @@ class Recipe(models.Model):
         return self.title
 
     def favourited_count(self):
-        return self.favourited.count
+        return self.favourited.count()
 
 
 class Ingredients(models.Model):
@@ -73,7 +73,7 @@ class Comment(models.Model):
     recipe = models.ForeignKey(
         Recipe, on_delete=models.CASCADE, related_name='comments'
     )
-    name = models.CharField(max_length=80)  # change to user name?
+    name = models.CharField(max_length=80)
     body = models.TextField()
     date_created = models.DateTimeField(auto_now_add=True)
     approved = models.BooleanField(default=False)
