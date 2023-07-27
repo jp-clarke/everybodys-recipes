@@ -53,16 +53,23 @@
                         </p>
                         <hr>
                         {% endfor %}
-                        {% if user.is_authenticated %}
-                        <h5 class="text-center">Leave a comment</h5>
-                            <p>Commenting as: <span class="fw-bold">{{ user.username }}</span></p>
-                            <form method="post">
-                                {{ comment_form | crispy }}
-                                {% csrf_token %}
-                                <button class="btn btn-primary mt-3" type="submit">Submit</button>
-                            </form>
+
+                        {% if commented %}
+                        <div class="alert alert-success" role="alert">
+                            Your comment has been submitted for approval
+                        </div>
                         {% else %}
-                        <h5>Sign in to comment</h5>
+                            {% if user.is_authenticated %}
+                            <h5 class="text-center">Leave a comment</h5>
+                                <p>Commenting as: <span class="fw-bold">{{ user.username }}</span></p>
+                                <form method="post">
+                                    {{ comment_form | crispy }}
+                                    {% csrf_token %}
+                                    <button class="btn btn-primary mt-3" type="submit">Submit</button>
+                                </form>
+                            {% else %}
+                            <h5>Sign in to comment</h5>
+                            {% endif %}
                         {% endif %}
                     </div>
                 </div>
