@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'django_jsonform',
     'cloudinary',
     'django_summernote',
+    'crispy_forms',
     'ordered_model',
     'blog',
 ]
@@ -63,6 +64,8 @@ ACCOUNT_EMAIL_VERIFICATION = 'none'
 
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 SUMMERNOTE_CONFIG = {
     # https://github.com/summernote/django-summernote#options

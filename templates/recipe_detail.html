@@ -2,13 +2,15 @@
 
 {% block content %}
 
+{% load crispy_forms_tags %}
+
 <div class="container-fluid">
     <div class="row text-center">
         <h1>{{ recipe.title }}</h1>
         <h3>By: {{ recipe.author }}</h3>
     </div>
     <div class="row justify-content-sm-center text-center">
-        <div class="col-lg-6 col-md-8 col-sm-10 p-0">
+        <div class="col-lg-6 col-md-8 col-sm-10 mb-5 p-0">
             <img src="{{ recipe.recipe_photo.url }}" class="img-fluid" alt="...">
             <h3>Description</h3>
             {{ recipe.description | safe }}
@@ -35,19 +37,34 @@
                     </div>
                 </div>
             </div>
-            <h3>Comments</h3>
-            <div class="row">
-                <div class="card text-start">
-                    {% for comment in comments %}
-                    <p class="fs-5 fw-bold">
-                        {{ comment.name }}
-                        <span class="fs-6 fw-light">commented on {{ comment.date_created }}</span>
-                    </p>
-                    <p>
-                        {{ comment.body }}
-                    </p>
+            
+            <div class="row mt-3 mx-0">
+                <div class="card p-0">
+                    <h3>Comments</h3>
                     <hr>
-                    {% endfor %}
+                    <div class="card-body text-start">
+                        {% for comment in comments %}
+                        <p class="fw-bold">
+                            {{ comment.name }}
+                            <span class="fs-6 fw-light">commented on {{ comment.date_created }}</span>
+                        </p>
+                        <p>
+                            {{ comment.body }}
+                        </p>
+                        <hr>
+                        {% endfor %}
+                        {% if user.is_authenticated %}
+                        <h5 class="text-center">Leave a comment</h5>
+                            <p>Commenting as: <span class="fw-bold">{{ user.username }}</span></p>
+                            <form method="post">
+                                {{ comment_form | crispy }}
+                                {% csrf_token %}
+                                <button class="btn btn-primary mt-3" type="submit">Submit</button>
+                            </form>
+                        {% else %}
+                        <h5>Sign in to comment</h5>
+                        {% endif %}
+                    </div>
                 </div>
             </div>
         </div>
