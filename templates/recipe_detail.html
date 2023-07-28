@@ -10,7 +10,8 @@
         <h5>By: {{ recipe.author }}</h5>
     </div>
 
-    <div class="row text-center">
+    <div class="row justify-content-center">
+        <div class="col align-self-center text-center">
         {% if user.is_authenticated %}
         <form action="{% url 'recipe_favourited' recipe.slug %}" method="POST" class="d-inline">
             {% csrf_token %}
@@ -25,9 +26,9 @@
             {% endif %}
         </form>
         {% else %}
-        <i class="fa-sharp fa-regular fa-heart"></i>
+        <span><i class="fa-sharp fa-regular fa-heart"></i>&nbsp;{{ recipe.favourited_count }}</span>
         {% endif %}
-        <span>{{ recipe.favourited_count }}</span>
+        </div>
     </div>
 
     <div class="row justify-content-sm-center text-center">
@@ -72,6 +73,15 @@
                         <p>
                             {{ comment.body }}
                         </p>
+                        
+                        {% if user.is_authenticated %}
+                        {% if comment.name == user.username %}
+                        <form method="post" action="{% url 'comment_confirm_delete' comment.id %}">
+                            {% csrf_token %}<input type="submit" value="DELETE">
+                        </form>
+                        <!-- <a href="{% url 'comment_confirm_delete' comment.id %}">Delete Comment</a> -->
+                        {% endif %}
+                        {% endif %}
                         <hr>
                         {% endfor %}
 

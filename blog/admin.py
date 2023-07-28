@@ -27,7 +27,7 @@ class RecipeAdmin(SummernoteModelAdmin):
 
     prepopulated_fields = {'slug': ('title',)}
     list_filter = ('status', 'date_created')
-    list_display = ('title', 'author', 'status', 'date_created')
+    list_display = ('id', 'title', 'author', 'status', 'date_created')
     search_fields = ['title',]
     summernote_fields = ('description')
     inlines = (
@@ -39,7 +39,7 @@ class RecipeAdmin(SummernoteModelAdmin):
 @admin.register(Comment)
 class CommentAdmin(admin.ModelAdmin):
 
-    list_display = ('name', 'body', 'recipe', 'date_created', 'approved')
+    list_display = ('id', 'name', 'body', 'recipe', 'date_created', 'approved')
     list_filter = ('approved', 'date_created')
     search_filter = ('name', 'body', 'recipe')
     actions = ['approve_comments']

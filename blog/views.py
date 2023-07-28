@@ -1,7 +1,8 @@
 from django.shortcuts import render, get_object_or_404, reverse
 from django.views import generic, View
 from django.http import HttpResponseRedirect
-from .models import Recipe
+from django.urls import reverse_lazy
+from .models import Recipe, Comment
 from .forms import CommentForm
 
 
@@ -80,3 +81,11 @@ class RecipeFavourite(View):
             recipe.favourited.add(request.user)
 
         return HttpResponseRedirect(reverse('recipe_detail', args=[slug]))
+
+
+class DeleteComment(generic.DeleteView):
+    model = Comment
+
+    def get_success_url(self):
+        recipe = self.object.recipe
+        return reverse_lazy('recipe_detail', args=[recipe.slug])

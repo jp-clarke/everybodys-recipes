@@ -17,7 +17,10 @@
                     </div>
                 </a>
                 <div class="card-footer">
-                    <p class="card-text text-muted h6">{{ recipe.date_created }}</p>
+                    <p class="card-text text-muted h6">
+                        {{ recipe.date_created }}
+                        <span class="float-end"><i class="fa-sharp fa-regular fa-heart"></i>&nbsp;{{ recipe.favourited_count }}</span>
+                    </p>
                 </div>
             </div>
         </div>

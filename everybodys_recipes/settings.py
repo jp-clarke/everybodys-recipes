@@ -47,14 +47,14 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'allauth',
     'allauth.account',
-    'allauth.socialaccount',
+    # 'allauth.socialaccount',
     'cloudinary_storage',
     'django.contrib.staticfiles',
-    'django_jsonform',
+    # 'django_jsonform',
     'cloudinary',
     'django_summernote',
     'crispy_forms',
-    'ordered_model',
+    # 'ordered_model',
     'blog',
 ]
 
