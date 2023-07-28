@@ -13,5 +13,11 @@ urlpatterns = [
     path(
         'comment_confirm_delete/<int:pk>',
         views.DeleteComment.as_view(),
-        name='comment_confirm_delete'),
+        name='comment_confirm_delete'
+    ),
+    path(
+        'comment_update_form/<int:pk>',
+        views.EditComment.as_view(),
+        name='comment_update_form'
+    ),
 ]

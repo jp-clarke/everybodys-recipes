@@ -81,6 +81,7 @@
                         <!-- <form method="post" action="{% url 'comment_confirm_delete' comment.id %}">
                             {% csrf_token %}<input type="submit" value="DELETE">
                         </form> -->
+                        <a href="{% url 'comment_update_form' comment.id %}">Edit Comment</a>
                         <a href="{% url 'comment_confirm_delete' comment.id %}">Delete Comment</a>
                         {% endif %}
                         {% endif %}

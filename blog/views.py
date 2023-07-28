@@ -90,3 +90,13 @@ class DeleteComment(generic.DeleteView):
     def get_success_url(self):
         recipe = self.object.recipe
         return reverse_lazy('recipe_detail', args=[recipe.slug])
+
+
+class EditComment(generic.UpdateView):
+    model = Comment
+    fields = ['body']
+    template_name = 'comment_update_form.html'
+
+    def get_success_url(self):
+        recipe = self.object.recipe
+        return reverse_lazy('recipe_detail', args=[recipe.slug])
