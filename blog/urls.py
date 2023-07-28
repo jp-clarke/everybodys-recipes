@@ -14,8 +14,4 @@ urlpatterns = [
         'comment_confirm_delete/<int:pk>',
         views.DeleteComment.as_view(),
         name='comment_confirm_delete'),
-    # path(
-    #     'comment_confirm_delete/<int:pk>',
-    #     views.DeleteComment.as_view(),
-    #     name='comment_confirm_delete'),
 ]

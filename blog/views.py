@@ -85,6 +85,7 @@ class RecipeFavourite(View):
 
 class DeleteComment(generic.DeleteView):
     model = Comment
+    template_name = 'comment_confirm_delete.html'
 
     def get_success_url(self):
         recipe = self.object.recipe
