@@ -97,6 +97,12 @@ class EditComment(generic.UpdateView):
     fields = ['body']
     template_name = 'comment_update_form.html'
 
+    def form_valid(self, form):
+        form.instance.approved = False
+        form.instance.edited = True
+        self.object = form.save()
+        return super().form_valid(form)
+
     def get_success_url(self):
         recipe = self.object.recipe
         return reverse_lazy('recipe_detail', args=[recipe.slug])

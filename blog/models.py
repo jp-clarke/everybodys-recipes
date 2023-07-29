@@ -76,6 +76,8 @@ class Comment(models.Model):
     name = models.CharField(max_length=80)
     body = models.TextField()
     date_created = models.DateTimeField(auto_now_add=True)
+    date_edited = models.DateTimeField(auto_now=True)
+    edited = models.BooleanField(default=False)
     approved = models.BooleanField(default=False)
 
     class Meta:

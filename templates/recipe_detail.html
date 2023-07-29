@@ -75,22 +75,39 @@
                         <p>
                             {{ comment.body }}
                         </p>
+                        <!-- {% if comment.edited and comment.approved %}
+                        <p class="fs-6 fw-light fst-italic">Edited on {{ comment.date_edited }}</p>
+                        {% endif %}
+
+                        {% if comment.edited and not comment.approved %}
+                        <div class="alert alert-success" role="alert">
+                            Your comment has been edited and is awaiting approval
+                        </div>
+                        {% endif %} -->
+
+                        {% if comment.edited %}
+                            {% if comment.approved %}
+                            <p class="fs-6 fw-light fst-italic">Edited on {{ comment.date_edited }}</p>
+                            {% else %}
+                            <div class="alert alert-success" role="alert">
+                                Your comment has been edited and is awaiting approval
+                            </div>
+                            {% endif %}
+                        {% endif %}
                         
                         {% if user.is_authenticated %}
-                        {% if comment.name == user.username %}
-                        <!-- <form method="post" action="{% url 'comment_confirm_delete' comment.id %}">
-                            {% csrf_token %}<input type="submit" value="DELETE">
-                        </form> -->
-                        <a href="{% url 'comment_update_form' comment.id %}">Edit Comment</a>
-                        <a href="{% url 'comment_confirm_delete' comment.id %}">Delete Comment</a>
+                            {% if comment.name == user.username %}
+                            <a href="{% url 'comment_update_form' comment.id %}">Edit Comment</a>
+                            <a href="{% url 'comment_confirm_delete' comment.id %}">Delete Comment</a>
+                            {% endif %}
                         {% endif %}
-                        {% endif %}
+                        
                         <hr>
                         {% endfor %}
 
                         {% if commented %}
                         <div class="alert alert-success" role="alert">
-                            Your comment has been submitted for approval
+                            Your comment is awaiting approval
                         </div>
                         {% else %}
                             {% if user.is_authenticated %}
