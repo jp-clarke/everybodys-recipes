@@ -48,25 +48,12 @@ class Ingredients(models.Model):
 
 class Instructions(models.Model):
     recipe = models.OneToOneField(
-        Recipe, on_delete=models.CASCADE, related_name="instructions"
+        Recipe, on_delete=models.CASCADE, related_name='instructions'
     )
     steps = models.TextField()
 
     def __str__(self):
         return self.steps
-
-
-# class InstructionThroughModel(OrderedModel):
-#     recipe = models.ForeignKey(
-#         Recipe, on_delete=models.CASCADE
-#     )
-#     step = models.ForeignKey(
-#         Instruction, on_delete=models.CASCADE
-#     )
-#     order_with_respect_to = 'step'
-
-# #     class Meta:
-# #         ordering = ('step', 'order')
 
 
 class Comment(models.Model):

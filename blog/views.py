@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404, reverse
 from django.views import generic, View
 from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy
+from django.contrib.auth.models import User
 from .models import Recipe, Comment
 from .forms import CommentForm
 
@@ -11,6 +12,17 @@ class RecipeList(generic.ListView):
     queryset = Recipe.objects.filter(status=1).order_by('date_created')
     template_name = 'index.html'
     paginate_by = 6
+
+
+class FavouritesList(generic.ListView):
+    model = Recipe
+    template_name = 'favourites.html'
+    paginate_by = 6
+
+    def get_queryset(self):
+        return Recipe.objects.filter(
+            favourited=self.request.user.id
+            ).order_by('date_created')
 
 
 class RecipeDetail(View):
@@ -97,12 +109,13 @@ class EditComment(generic.UpdateView):
     fields = ['body']
     template_name = 'comment_update_form.html'
 
+    def get_success_url(self):
+        recipe = self.object.recipe
+        return reverse_lazy('recipe_detail', args=[recipe.slug])
+
     def form_valid(self, form):
         form.instance.approved = False
         form.instance.edited = True
         self.object = form.save()
-        return super().form_valid(form)
-
-    def get_success_url(self):
-        recipe = self.object.recipe
-        return reverse_lazy('recipe_detail', args=[recipe.slug])
+        # return super().form_valid(form)
+        return HttpResponseRedirect(self.get_success_url())

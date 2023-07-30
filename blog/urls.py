@@ -20,4 +20,5 @@ urlpatterns = [
         views.EditComment.as_view(),
         name='comment_update_form'
     ),
+    path('favourites/', views.FavouritesList.as_view(), name='favourites'),
 ]
