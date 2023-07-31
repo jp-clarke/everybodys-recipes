@@ -3,7 +3,7 @@ from django.views import generic, View
 from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy
 from django.contrib import messages
-# from django.contrib.messages.views import SuccessMessageMixin
+from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Recipe, Comment
 from .forms import CommentForm
 
@@ -31,8 +31,7 @@ class RecipeDetail(View):
     def get(self, request, slug, *args, **kwargs):
         queryset = Recipe.objects.filter(status=1)
         recipe = get_object_or_404(queryset, slug=slug)
-        comments = recipe.comments.filter(
-            approved=True).order_by('date_created')
+        comments = recipe.comments.order_by('date_created')
         favourited = False
         if recipe.favourited.filter(id=self.request.user.id).exists():
             favourited = True
@@ -68,6 +67,7 @@ class RecipeDetail(View):
             comment.recipe = recipe
             comment.save()
             messages.success(request, 'Your comment is awaiting approval')
+            return HttpResponseRedirect(request.path_info)
         else:
             comment_form = CommentForm()
 
@@ -97,7 +97,7 @@ class RecipeFavourite(View):
         return HttpResponseRedirect(reverse('recipe_detail', args=[slug]))
 
 
-class DeleteComment(generic.DeleteView):
+class DeleteComment(LoginRequiredMixin, generic.DeleteView):
     model = Comment
     template_name = 'comment_confirm_delete.html'
 
@@ -107,7 +107,7 @@ class DeleteComment(generic.DeleteView):
         return reverse_lazy('recipe_detail', args=[recipe.slug])
 
 
-class EditComment(generic.UpdateView):
+class EditComment(LoginRequiredMixin, generic.UpdateView):
     model = Comment
     fields = ['body']
     template_name = 'comment_update_form.html'

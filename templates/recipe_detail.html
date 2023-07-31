@@ -72,29 +72,24 @@
                             {{ comment.name }}
                             <span class="fs-6 fw-light">commented on {{ comment.date_created }}</span>
                         </p>
+                        {% if comment.approved %}
                         <p>
                             {{ comment.body }}
                         </p>
-                        <!-- {% if comment.edited and comment.approved %}
-                        <p class="fs-6 fw-light fst-italic">Edited on {{ comment.date_edited }}</p>
+                        {% elif comment.edited and comment.approved %}
+                        <p class="fs-6 fw-light fst-italic">
+                            Edited on {{ comment.date_edited }}
+                        </p>
+                        {% elif comment.edited and not comment.approved %}
+                        <p class="fs-6 fst-italic">
+                            This comment has been edited and is awaiting approval
+                        </p>
+                        {% else %}
+                        <p class="fs-6 fst-italic">
+                            This comment is awaiting approval
+                        </p>
                         {% endif %}
 
-                        {% if comment.edited and not comment.approved %}
-                        <div class="alert alert-success" role="alert">
-                            Your comment has been edited and is awaiting approval
-                        </div>
-                        {% endif %} -->
-
-                        {% if comment.edited %}
-                            {% if comment.approved %}
-                            <p class="fs-6 fw-light fst-italic">Edited on {{ comment.date_edited }}</p>
-                            {% else %}
-                            <div class="alert alert-success" role="alert">
-                                Your comment has been edited and is awaiting approval
-                            </div>
-                            {% endif %}
-                        {% endif %}
-                        
                         {% if user.is_authenticated %}
                             {% if comment.name == user.username %}
                             <a href="{% url 'comment_update_form' comment.id %}">Edit Comment</a>
@@ -105,22 +100,16 @@
                         <hr>
                         {% endfor %}
 
-                        {% if commented %}
-                        <div class="alert alert-success" role="alert">
-                            Your comment is awaiting approval
-                        </div>
+                        {% if user.is_authenticated %}
+                        <h5 class="text-center">Leave a comment</h5>
+                            <p>Commenting as: <span class="fw-bold">{{ user.username }}</span></p>
+                            <form method="POST">
+                                {{ comment_form | crispy }}
+                                {% csrf_token %}
+                                <button class="btn btn-primary mt-3" type="submit">Submit</button>
+                            </form>
                         {% else %}
-                            {% if user.is_authenticated %}
-                            <h5 class="text-center">Leave a comment</h5>
-                                <p>Commenting as: <span class="fw-bold">{{ user.username }}</span></p>
-                                <form method="POST">
-                                    {{ comment_form | crispy }}
-                                    {% csrf_token %}
-                                    <button class="btn btn-primary mt-3" type="submit">Submit</button>
-                                </form>
-                            {% else %}
-                            <h5>Sign in to comment</h5>
-                            {% endif %}
+                        <h5>Sign in to comment</h5>
                         {% endif %}
                     </div>
                 </div>
