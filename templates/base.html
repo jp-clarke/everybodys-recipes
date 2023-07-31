@@ -76,11 +76,33 @@
         </div>
     </nav>
 
+    <!-- Message alert -->
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-6">
+        {% for message in messages %}
+        <div class="alert {{ message.tags }} alert-dismissable fade show" id="msg" role="alert">
+          {{ message | safe }}
+          <button type="button" class="btn-close float-end" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        {% endfor %}
+        </div>
+      </div>
+    </div>
+    
+
     <main>
         {% block content %}
 
         {% endblock content %}
     </main>
-    
+
+    <script>
+      setTimeout(function() {
+        let messages = document.getElementById("msg");
+        let alert = new bootstrap.Alert(messages);
+        alert.close();
+      }, 3000);
+    </script>
 </body>
 </html>

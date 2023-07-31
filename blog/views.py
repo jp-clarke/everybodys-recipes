@@ -2,7 +2,8 @@ from django.shortcuts import render, get_object_or_404, reverse
 from django.views import generic, View
 from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy
-from django.contrib.auth.models import User
+from django.contrib import messages
+# from django.contrib.messages.views import SuccessMessageMixin
 from .models import Recipe, Comment
 from .forms import CommentForm
 
@@ -66,6 +67,7 @@ class RecipeDetail(View):
             comment = comment_form.save(commit=False)
             comment.recipe = recipe
             comment.save()
+            messages.success(request, 'Your comment is awaiting approval')
         else:
             comment_form = CommentForm()
 
@@ -101,6 +103,7 @@ class DeleteComment(generic.DeleteView):
 
     def get_success_url(self):
         recipe = self.object.recipe
+        messages.success(self.request, 'Your comment has been deleted')
         return reverse_lazy('recipe_detail', args=[recipe.slug])
 
 
@@ -108,14 +111,15 @@ class EditComment(generic.UpdateView):
     model = Comment
     fields = ['body']
     template_name = 'comment_update_form.html'
+    success_message = 'Comment has been edited and is awaiting approval'
 
     def get_success_url(self):
         recipe = self.object.recipe
+        messages.success(self.request, 'Your comment has been edited and is awaiting approval')
         return reverse_lazy('recipe_detail', args=[recipe.slug])
 
     def form_valid(self, form):
         form.instance.approved = False
         form.instance.edited = True
         self.object = form.save()
-        # return super().form_valid(form)
         return HttpResponseRedirect(self.get_success_url())
