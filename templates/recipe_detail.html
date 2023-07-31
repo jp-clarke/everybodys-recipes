@@ -35,7 +35,11 @@
 
     <div class="row justify-content-sm-center text-center">
         <div class="col-lg-6 col-md-8 col-sm-10 mb-5 p-0">
-            <img src="{{ recipe.recipe_photo.url }}" class="img-fluid" alt="...">
+            {% if 'placeholder' in recipe.recipe_photo.url %}
+            <img src="https://res.cloudinary.com/dbnrqjev4/image/upload/v1690840285/pexels-fauxels-3184183_vgtkgv.jpg" class="card-img-top" alt="...">
+            {% else %}
+            <img src="{{ recipe.recipe_photo.url }}" class="card-img-top" alt="...">
+            {% endif %}
             <h3>Description</h3>
             {{ recipe.description | safe }}
             <div class="row">
