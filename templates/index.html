@@ -23,7 +23,14 @@
                 <div class="card-footer">
                     <p class="card-text text-muted h6">
                         {{ recipe.date_created }}
-                        <span class="float-end"><i class="fa-sharp fa-regular fa-heart"></i>&nbsp;{{ recipe.favourited_count }}</span>
+                        <span class="float-end">
+                            {% with recipe.comments.count as total_comments %}
+                            <i class="fa-regular fa-comment"></i>
+                            {{ total_comments }}&nbsp;&nbsp;
+                            {% endwith %}
+                            <i class="fa-sharp fa-regular fa-heart"></i>
+                            &nbsp;{{ recipe.favourited_count }}
+                        </span>
                     </p>
                 </div>
             </div>

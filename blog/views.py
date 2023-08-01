@@ -115,7 +115,10 @@ class EditComment(LoginRequiredMixin, generic.UpdateView):
 
     def get_success_url(self):
         recipe = self.object.recipe
-        messages.success(self.request, 'Your comment has been edited and is awaiting approval')
+        messages.success(
+            self.request,
+            'Your comment has been edited and is awaiting approval'
+        )
         return reverse_lazy('recipe_detail', args=[recipe.slug])
 
     def form_valid(self, form):

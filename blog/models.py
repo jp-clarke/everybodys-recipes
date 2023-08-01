@@ -1,7 +1,5 @@
 from django.db import models
 from django.contrib.auth.models import User
-# from django_jsonform.models.fields import ArrayField
-# https://django-jsonform.readthedocs.io/en/latest/
 from cloudinary.models import CloudinaryField
 
 STATUS = ((0, 'Draft'), (1, 'Published'))
