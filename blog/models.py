@@ -1,6 +1,5 @@
 from django.db import models
 from django.contrib.auth.models import User
-# from ordered_model.models import OrderedModel
 # from django_jsonform.models.fields import ArrayField
 # https://django-jsonform.readthedocs.io/en/latest/
 from cloudinary.models import CloudinaryField

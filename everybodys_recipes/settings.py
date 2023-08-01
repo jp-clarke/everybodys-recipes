@@ -55,7 +55,6 @@ INSTALLED_APPS = [
     'cloudinary',
     'django_summernote',
     'crispy_forms',
-    # 'ordered_model',
     'blog',
 ]
 
