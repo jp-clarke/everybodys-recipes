@@ -111,7 +111,6 @@ class EditComment(LoginRequiredMixin, generic.UpdateView):
     model = Comment
     fields = ['body']
     template_name = 'comment_update_form.html'
-    success_message = 'Comment has been edited and is awaiting approval'
 
     def get_success_url(self):
         recipe = self.object.recipe
