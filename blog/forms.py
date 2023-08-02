@@ -7,8 +7,5 @@ class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment
         fields = ('body',)
-
-    def __init(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.helper = FormHelper(self)
-        self.fields.form_show_labels = False
+        labels = {'body': ""}
+        label_suffix = ''
