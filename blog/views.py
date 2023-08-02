@@ -3,7 +3,7 @@ from django.views import generic, View
 from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy
 from django.contrib import messages
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from .models import Recipe, Comment
 from .forms import CommentForm
 
@@ -97,9 +97,13 @@ class RecipeFavourite(View):
         return HttpResponseRedirect(reverse('recipe_detail', args=[slug]))
 
 
-class DeleteComment(LoginRequiredMixin, generic.DeleteView):
+class DeleteComment(LoginRequiredMixin, UserPassesTestMixin, generic.DeleteView):
     model = Comment
     template_name = 'comment_confirm_delete.html'
+
+    def test_func(self):
+        comment = self.get_object()
+        return self.request.user.username == comment.name
 
     def get_success_url(self):
         recipe = self.object.recipe
@@ -107,10 +111,14 @@ class DeleteComment(LoginRequiredMixin, generic.DeleteView):
         return reverse_lazy('recipe_detail', args=[recipe.slug])
 
 
-class EditComment(LoginRequiredMixin, generic.UpdateView):
+class EditComment(LoginRequiredMixin, UserPassesTestMixin, generic.UpdateView):
     model = Comment
     fields = ['body']
     template_name = 'comment_update_form.html'
+
+    def test_func(self):
+        comment = self.get_object()
+        return self.request.user.username == comment.name
 
     def get_success_url(self):
         recipe = self.object.recipe
