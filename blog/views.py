@@ -5,7 +5,7 @@ from django.urls import reverse_lazy
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from .models import Recipe, Comment
-from .forms import CommentForm
+from .forms import CommentForm, RecipeForm, IngredientsFormSet, InstructionsFormSet
 
 
 class RecipeList(generic.ListView):
@@ -135,3 +135,56 @@ class EditComment(LoginRequiredMixin, UserPassesTestMixin, generic.UpdateView):
         form.instance.edited = True
         self.object = form.save()
         return HttpResponseRedirect(self.get_success_url())
+
+
+class CreateRecipe(LoginRequiredMixin, generic.CreateView):
+    model = Recipe
+    form_class = RecipeForm
+    template_name = 'create_recipe.html'
+    success_url = 'my_recipes.html'
+
+    def get(self, request, *args, **kwargs):
+        self.object = None
+        form_class = self.get_form_class()
+        form = self.get_form(form_class)
+        ingredients_form = IngredientsFormSet()
+        instructions_form = InstructionsFormSet()
+        return self.render_to_response(
+            self.get_context_data(
+                form=form,
+                ingredients_form=ingredients_form,
+                instructions_form=instructions_form
+            )
+        )
+    
+    def post(self, request, *args, **kwargs):
+        self.object = None
+        form_class = self.get_form_class()
+        form = self.get_form(form_class)
+        ingredients_form = IngredientsFormSet()
+        instructions_form = InstructionsFormSet()
+        if (
+            form.is_valid() and ingredients_form.is_valid() and instructions_form.is_valid()
+            ):
+            return self.form_valid(form, ingredients_form, instructions_form)
+        else:
+            return self.form_invalid(form, ingredients_form, instructions_form)
+
+    def form_valid(self, form, ingredients_form, instructions_form):
+        self.object = form.save()
+        ingredients_form.instance = self.object
+        ingredients_form.save()
+        instructions_form.instance = self.object
+        instructions_form.save()
+        return HttpResponseRedirect(self.get_success_url())
+
+    def form_invalid(self, form, ingredients_form, instructions_form):
+        return self.render_to_response(
+            self.get_context_data(
+                self.get_context_data(
+                    form=form,
+                    ingredients_form=ingredients_form,
+                    instructions_form=instructions_form
+                )
+            )
+        )
