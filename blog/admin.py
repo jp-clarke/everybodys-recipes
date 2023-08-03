@@ -1,5 +1,4 @@
 from django.contrib import admin
-# from ordered_model.admin import OrderedTabularInline, OrderedInlineModelAdminMixin
 from .models import Recipe, Ingredients, Instructions, Comment
 from django_summernote.admin import SummernoteModelAdmin
 from django_summernote.admin import SummernoteInlineModelAdmin

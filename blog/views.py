@@ -97,7 +97,9 @@ class RecipeFavourite(View):
         return HttpResponseRedirect(reverse('recipe_detail', args=[slug]))
 
 
-class DeleteComment(LoginRequiredMixin, UserPassesTestMixin, generic.DeleteView):
+class DeleteComment(LoginRequiredMixin,
+                    UserPassesTestMixin,
+                    generic.DeleteView):
     model = Comment
     template_name = 'comment_confirm_delete.html'
 
