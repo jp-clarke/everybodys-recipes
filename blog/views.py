@@ -28,6 +28,17 @@ class FavouritesList(generic.ListView):
             ).order_by('date_created')
 
 
+class MyRecipesList(generic.ListView):
+    model = Recipe
+    template_name = 'my_recipes.html'
+    paginate_by = 6
+
+    def get_queryset(self):
+        return Recipe.objects.filter(
+            author=self.request.user.id
+            ).order_by('date_created')
+
+
 class RecipeDetail(View):
 
     def get(self, request, slug, *args, **kwargs):
