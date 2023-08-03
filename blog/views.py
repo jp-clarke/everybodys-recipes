@@ -5,7 +5,9 @@ from django.urls import reverse_lazy
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from .models import Recipe, Comment
-from .forms import CommentForm, RecipeForm, IngredientsFormSet, InstructionsFormSet
+from .forms import (
+    CommentForm, RecipeForm, IngredientsFormSet, InstructionsFormSet
+)
 
 
 class RecipeList(generic.ListView):
@@ -140,7 +142,7 @@ class EditComment(LoginRequiredMixin, UserPassesTestMixin, generic.UpdateView):
 class CreateRecipe(LoginRequiredMixin, generic.CreateView):
     model = Recipe
     form_class = RecipeForm
-    template_name = 'create_recipe.html'
+    template_name = 'create_recipe_form.html'
     success_url = 'my_recipes.html'
 
     def get(self, request, *args, **kwargs):
@@ -156,7 +158,7 @@ class CreateRecipe(LoginRequiredMixin, generic.CreateView):
                 instructions_form=instructions_form
             )
         )
-    
+
     def post(self, request, *args, **kwargs):
         self.object = None
         form_class = self.get_form_class()
@@ -164,8 +166,10 @@ class CreateRecipe(LoginRequiredMixin, generic.CreateView):
         ingredients_form = IngredientsFormSet()
         instructions_form = InstructionsFormSet()
         if (
-            form.is_valid() and ingredients_form.is_valid() and instructions_form.is_valid()
-            ):
+                form.is_valid() and
+                ingredients_form.is_valid() and
+                instructions_form.is_valid()
+        ):
             return self.form_valid(form, ingredients_form, instructions_form)
         else:
             return self.form_invalid(form, ingredients_form, instructions_form)
