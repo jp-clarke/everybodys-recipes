@@ -25,6 +25,7 @@ class FavouritesList(generic.ListView):
 
     def get_queryset(self):
         return Recipe.objects.filter(
+            status=1,
             favourited=self.request.user.id
             ).order_by('date_created')
 
@@ -36,6 +37,7 @@ class MyRecipesList(generic.ListView):
 
     def get_queryset(self):
         return Recipe.objects.filter(
+            status=1,
             author=self.request.user.id
             ).order_by('date_created')
 
