@@ -19,8 +19,8 @@ class RecipeForm(forms.ModelForm):
 
 
 IngredientsFormSet = inlineformset_factory(
-    Recipe, Ingredients, fields=('__all__'), extra=0
+    Recipe, Ingredients, fields=('amount', 'ingredient',), extra=1
 )
 InstructionsFormSet = inlineformset_factory(
-    Recipe, Instructions, fields=('__all__'), extra=0
+    Recipe, Instructions, fields=('steps',), extra=1
 )

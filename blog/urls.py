@@ -21,7 +21,7 @@ urlpatterns = [
         name='comment_update_form'
     ),
     path(
-        'create_recipe_form/<int:pk>',
+        'create_recipe_form/',
         views.CreateRecipe.as_view(),
         name='create_recipe_form'
     ),

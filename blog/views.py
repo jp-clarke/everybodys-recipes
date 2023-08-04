@@ -4,6 +4,7 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.utils.text import slugify
 from .models import Recipe, Comment
 from .forms import (
     CommentForm, RecipeForm, IngredientsFormSet, InstructionsFormSet
@@ -154,7 +155,7 @@ class CreateRecipe(LoginRequiredMixin, generic.CreateView):
     model = Recipe
     form_class = RecipeForm
     template_name = 'create_recipe_form.html'
-    success_url = 'my_recipes.html'
+    success_url = '/my_recipes/'
 
     def get(self, request, *args, **kwargs):
         self.object = None
@@ -174,13 +175,15 @@ class CreateRecipe(LoginRequiredMixin, generic.CreateView):
         self.object = None
         form_class = self.get_form_class()
         form = self.get_form(form_class)
-        ingredients_form = IngredientsFormSet()
-        instructions_form = InstructionsFormSet()
+        ingredients_form = IngredientsFormSet(self.request.POST)
+        instructions_form = InstructionsFormSet(self.request.POST)
         if (
-                form.is_valid() and
-                ingredients_form.is_valid() and
-                instructions_form.is_valid()
+                form.is_valid()
+                and ingredients_form.is_valid()
+                and instructions_form.is_valid()
         ):
+            form.instance.author_id = request.user.id
+            form.instance.slug = slugify(form.instance.title)
             return self.form_valid(form, ingredients_form, instructions_form)
         else:
             return self.form_invalid(form, ingredients_form, instructions_form)
@@ -196,10 +199,8 @@ class CreateRecipe(LoginRequiredMixin, generic.CreateView):
     def form_invalid(self, form, ingredients_form, instructions_form):
         return self.render_to_response(
             self.get_context_data(
-                self.get_context_data(
-                    form=form,
-                    ingredients_form=ingredients_form,
-                    instructions_form=instructions_form
-                )
+                form=form,
+                ingredients_form=ingredients_form,
+                instructions_form=instructions_form
             )
         )

@@ -7,8 +7,16 @@
         <div class="col-sm-8 col-md-6 mt-3">
             <h3>Create Recipe:</h3>
             <form method="post">{% csrf_token %}
-                {{ form.body }}
+                {{ form.as_p }}
                 <br>
+                <!-- {% for form in ingredients_form %} -->
+                    {{ ingredients_form.as_table }}
+                    <br>
+                <!-- {% endfor %} -->
+                <!-- {% for form in instructions_form %} -->
+                    {{ instructions_form.as_p }}
+                    <br>
+                <!-- {% endfor %} -->
                 <input type="submit" value="Save">
             </form>
         </div>
