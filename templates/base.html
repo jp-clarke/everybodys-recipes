@@ -36,21 +36,11 @@
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="#">Register</a>
-              </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Dropdown
-                </a>
-                <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="#">Action</a></li>
-                  <li><a class="dropdown-item" href="#">Another action</a></li>
-                  <li><hr class="dropdown-divider"></li>
-                  <li><a class="dropdown-item" href="#">Something else here</a></li>
-                </ul>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link disabled">Disabled</a>
               </li> -->
+              
+              <!-- <li class="nav-item">
+                <a class="nav-link disabled">Disabled</a>
+              </li>  -->
             </ul>
             <!-- <form class="d-flex" role="search">
                 <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
@@ -59,10 +49,29 @@
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
               {% if user.is_authenticated %}
               <li class="nav-item">
-                <a class="nav-link" href="{% url 'favourites' %}">My Favourites</a>
+                <a class="nav-link" href="{% url 'my_recipes' %}">My Recipes</a>
               </li>
               <li class="nav-item">
+                <a class="nav-link" href="{% url 'favourites' %}">My Favourites</a>
+              </li>
+              <!-- <li class="nav-item">
                 <a class="nav-link" href="{% url 'account_logout' %}">Sign Out</a>
+              </li> -->
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Signed in as: {{ user.username }}
+                </a>
+                <ul class="dropdown-menu">
+                  <li class="nav-item">
+                    <a class="nav-link" href="{% url 'create_recipe_form' %}">Create a Recipe</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="{% url 'account_logout' %}">Sign Out</a>
+                  </li>
+                  <!-- <li><a class="dropdown-item" href="#">Another action</a></li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li><a class="dropdown-item" href="#">Something else here</a></li> -->
+                </ul>
               </li>
               {% else %}
               <li class="nav-item">
@@ -93,6 +102,8 @@
     
 
     <main>
+        <h1 class="text-center">{% block heading %}{% endblock %}</h1>
+
         {% block content %}
 
         {% endblock content %}
