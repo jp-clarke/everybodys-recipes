@@ -52,8 +52,8 @@ class Recipe(models.Model):
 #     )
 #     steps = models.TextField()
 
-    def __str__(self):
-        return self.steps
+    # def __str__(self):
+    #     return self.steps
 
 
 class Comment(models.Model):

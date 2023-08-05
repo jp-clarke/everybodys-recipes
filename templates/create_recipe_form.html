@@ -10,32 +10,6 @@
             <h3>Create Recipe:</h3>
             <form method="post">{% csrf_token %}
                 {{ form | crispy }}
-                <!-- {{ form.title }}
-                {{ form.recipe_photo }}
-                {{ form.description }} -->
-                <!-- <br> -->
-                <!-- {{ ingredients_form.management_form }}
-                <div id="ingredient-formset">
-                    {% for form in ingredients_form %}
-                    <div class="ingredient-form">
-                        {{form.as_table}}
-                    </div>
-                    {% endfor %}
-                </div>
-                <div class="col-md-4 input-group">
-                    <button class="btn btn-success" id="add-ingredient">Add Ingredient</button>
-                </div> -->
-
-                <!-- {% for form iyean ingredients_form %} -->
-                <!-- <div>
-                    {{ ingredients_form.as_table }}
-                </div>
-                    <br> -->
-                <!-- {% endfor %} -->
-                <!-- {% for form in instructions_form %} -->
-                    <!-- {{ instructions_form.as_p }} -->
-                    <!-- <br> -->
-                <!-- {% endfor %} -->
                 <input type="submit" value="Save">
             </form>
         </div>

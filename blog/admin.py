@@ -28,7 +28,7 @@ class RecipeAdmin(SummernoteModelAdmin):
     list_filter = ('status', 'date_created')
     list_display = ('id', 'title', 'slug', 'author', 'status', 'date_created')
     search_fields = ['title',]
-    summernote_fields = ('description')
+    summernote_fields = ('description', 'ingredients', 'instructions')
     # inlines = (
     #     IngredientInline,
     #     InstructionInline,
