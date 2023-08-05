@@ -82,7 +82,7 @@ SUMMERNOTE_CONFIG = {
     'summernote': {
         'airMode': False,
         'width': '100%',
-        'height': '150',
+        'height': '200',
         'toolbar': [
             # ['style', ['style']],
             ['font', ['bold', 'italic', 'underline', 'clear']],

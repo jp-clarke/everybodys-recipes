@@ -51,22 +51,13 @@
             <h3>Description</h3>
             {{ recipe.description | safe }}
             <div class="row">
-                <div class="col-sm-6">
+                <div class="col-sm-5">
                     <div class="card">
                         <h3>Ingredients</h3>
-                        {% for ingredient in recipe.ingredients.all %}
-                        <div class="row text-center">
-                            <div class="col-5">
-                                {{ ingredient.amount }}
-                            </div>
-                            <div class="col-7">
-                                {{ ingredient.ingredient }}
-                            </div>
-                        </div>                        
-                        {% endfor %}
+                        {{ recipe.ingredients | safe }}
                     </div>
                 </div>
-                <div class="col-sm-6">
+                <div class="col-sm-7">
                     <div class="card">
                         <h3>Instructions</h3>
                         {{ recipe.instructions | safe }}
