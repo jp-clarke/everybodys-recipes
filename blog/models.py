@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from cloudinary.models import CloudinaryField
+from django_summernote.fields import SummernoteTextField
 
 STATUS = ((0, 'Draft'), (1, 'Published'))
 
@@ -14,6 +15,8 @@ class Recipe(models.Model):
     date_created = models.DateTimeField(auto_now_add=True)
     recipe_photo = CloudinaryField('image', default='placeholder')
     description = models.TextField()
+    ingredients = models.TextField(default='ingredients')
+    instructions = models.TextField(default='instructions')
     favourited = models.ManyToManyField(
         User, related_name='favourited_recipes', blank=True
     )
@@ -29,25 +32,25 @@ class Recipe(models.Model):
         return self.favourited.count()
 
 
-class Ingredients(models.Model):
-    recipe = models.ForeignKey(
-        Recipe, on_delete=models.CASCADE, related_name='ingredients'
-    )
-    amount = models.CharField(max_length=50)
-    ingredient = models.CharField(max_length=100)
+# class Ingredients(models.Model):
+#     recipe = models.ForeignKey(
+#         Recipe, on_delete=models.CASCADE, related_name='ingredients'
+#     )
+#     amount = models.CharField(max_length=50)
+#     ingredient = models.CharField(max_length=100)
 
-    class Meta:
-        verbose_name_plural = 'Ingredients'
+#     class Meta:
+#         verbose_name_plural = 'Ingredients'
 
-    def __str__(self):
-        return self.ingredient
+#     def __str__(self):
+#         return self.ingredient
 
 
-class Instructions(models.Model):
-    recipe = models.OneToOneField(
-        Recipe, on_delete=models.CASCADE, related_name='instructions'
-    )
-    steps = models.TextField()
+# class Instructions(models.Model):
+#     recipe = models.OneToOneField(
+#         Recipe, on_delete=models.CASCADE, related_name='instructions'
+#     )
+#     steps = models.TextField()
 
     def __str__(self):
         return self.steps

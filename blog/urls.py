@@ -20,11 +20,11 @@ urlpatterns = [
         views.EditComment.as_view(),
         name='comment_update_form'
     ),
-    path(
-        'create_recipe_form/',
-        views.CreateRecipe.as_view(),
-        name='create_recipe_form'
-    ),
+    # path(
+    #     'create_recipe_form/',
+    #     views.CreateRecipe.as_view(),
+    #     name='create_recipe_form'
+    # ),
     path('favourites/', views.FavouritesList.as_view(), name='favourites'),
     path('my_recipes/', views.MyRecipesList.as_view(), name='my_recipes'),
 ]
