@@ -20,13 +20,26 @@
 | | Control comments | As a Site Admin I can approve or disapprove comments so that I can filter out objectionable comments | 
 | | Create draft recipes | As a Site Admin I can create draft recipes so that I can finish writing the content later |
 | | Publish recipes | As a Site Admin I can view user submitted recipes so that I can approve and publish them to the site |
-|
 
 ## Design
 
 ### Wireframe
 
-### Database
+### Database Model
+
+| Model | Key | Name | Type | Notes |
+| --- | --- | --- | --- | --- |
+| Recipe Model | | Title (Unique) | Char | Max Length = 200 |
+| | | Slug (Unique) | SlugField | Max Length = 200 |
+| | ForeignKey | Author | User Model | |
+| | | Date Created | DateTime | |
+| | | Recipe Photo | CloudinaryField | |
+| | | Description | TextField | |
+| | | Ingredients | TextField | |
+| | | Instructions | TextField | |
+| | Many to Many | Favourited | User model | |
+| | | Status | IntegerField | 0 = Draft, 1 = Published |
+
 
 ### Styling
 
