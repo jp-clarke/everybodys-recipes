@@ -1,6 +1,5 @@
-.btn {
-    z-index: 1;
-    background-color: #dcdcdc;
+body {
+    font-family: 'Open Sans', sans-serif;
 }
 
 h1,
@@ -12,8 +11,21 @@ h6 {
     margin-top: 1rem;
 }
 
+.btn {
+    z-index: 1;
+    background-color: #dcdcdc;
+}
+
 .navbar {
     background-color: #e5dfa5;
+}
+
+.recipe-method .card {
+    height: 100%;
+}
+
+.card li {
+    margin-bottom: 1em;
 }
 
 #btn-recipe-card {
