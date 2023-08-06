@@ -1,3 +1,21 @@
 .btn {
     z-index: 1;
+    background-color: #dcdcdc;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin-top: 1rem;
+}
+
+.navbar {
+    background-color: #e5dfa5;
+}
+
+#btn-recipe-card {
+    background-color: white;
 }

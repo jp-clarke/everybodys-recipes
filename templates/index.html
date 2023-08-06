@@ -11,7 +11,7 @@ All Recipes
         {% for recipe in recipe_list %}
         <div class="col-md-4">
             <div class="card mb-4">
-                <a href="{% url 'recipe_detail' recipe.slug %}" class="btn">
+                <a href="{% url 'recipe_detail' recipe.slug %}" class="btn" id="btn-recipe-card">
                     {% if 'placeholder' in recipe.recipe_photo.url %}
                     <img src="https://res.cloudinary.com/dbnrqjev4/image/upload/v1690840285/pexels-fauxels-3184183_vgtkgv.jpg" class="card-img-top" alt="...">
                     {% else %}

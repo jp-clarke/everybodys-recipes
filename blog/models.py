@@ -15,8 +15,8 @@ class Recipe(models.Model):
     date_created = models.DateTimeField(auto_now_add=True)
     recipe_photo = CloudinaryField('image', default='placeholder')
     description = models.TextField()
-    ingredients = models.TextField(default='ingredients')
-    instructions = models.TextField(default='instructions')
+    ingredients = SummernoteTextField(default='ingredients')
+    instructions = SummernoteTextField(default='instructions')
     favourited = models.ManyToManyField(
         User, related_name='favourited_recipes', blank=True
     )
