@@ -20,7 +20,7 @@ h6 {
     background-color: #e5dfa5;
 }
 
-.recipe-method .card {
+.recipe-method {
     height: 100%;
     width: 100%;
     margin: 0;
@@ -29,6 +29,20 @@ h6 {
 
 .card li {
     margin-bottom: 1em;
+}
+
+#recipe-ingredients {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+#recipe-instructions {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
 }
 
 #btn-recipe-card {
