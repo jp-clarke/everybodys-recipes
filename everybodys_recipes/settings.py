@@ -84,14 +84,8 @@ SUMMERNOTE_CONFIG = {
         'width': '100%',
         'height': '200',
         'toolbar': [
-            # ['style', ['style']],
             ['font', ['bold', 'italic', 'underline', 'clear']],
-            # ['fontname', ['fontname']],
-            # ['color', ['color']],
-            ['para', ['ol']],
-            # ['table', ['table']],
-            # ['insert', ['link', 'picture', 'video']],
-            # ['view', ['fullscreen', 'codeview', 'help']],
+            ['para', ['ol', 'ul']],
         ],
     },
 }

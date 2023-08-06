@@ -22,9 +22,6 @@ class Recipe(models.Model):
     )
     status = models.IntegerField(choices=STATUS, default=0)
 
-    # class Meta:
-    #     ordering = ['-date_created']
-
     def __str__(self):
         return self.title
 
@@ -42,9 +39,6 @@ class Comment(models.Model):
     date_edited = models.DateTimeField(auto_now=True)
     edited = models.BooleanField(default=False)
     approved = models.BooleanField(default=False)
-
-    # class Meta:
-    #     ordering = ['date_created']
 
     def __str__(self):
         return f"Comment {self.body} by {self.name}"

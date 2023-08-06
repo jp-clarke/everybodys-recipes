@@ -15,12 +15,11 @@ All Recipes
                     {% if 'placeholder' in recipe.recipe_photo.url %}
                     <img src="https://res.cloudinary.com/dbnrqjev4/image/upload/v1690840285/pexels-fauxels-3184183_vgtkgv.jpg" class="card-img-top" alt="...">
                     {% else %}
-                    <img src="{{ recipe.recipe_photo.url }}" class="card-img-top" alt="...">
+                    <img src="{{ recipe.recipe_photo.url }}" class="card-img-top recipe-img-home" alt="...">
                     {% endif %}
                     <div class="card-body">
                         <h3 class="card-title">{{ recipe.title }}</h3>
                         <h4 class="card-subtitle">By: {{ recipe.author }}</h4>
-                        <p class="card-text">{{ recipe.description | safe }}</p>
                     </div>
                 </a>
                 <div class="card-footer">

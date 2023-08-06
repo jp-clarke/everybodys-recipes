@@ -6,12 +6,7 @@ from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.utils.text import slugify
 from .models import Recipe, Comment
-from .forms import (
-    CommentForm,
-    RecipeForm
-    # IngredientsFormSet,
-    # InstructionsFormSet
-)
+from .forms import (CommentForm, RecipeForm)
 
 
 class RecipeList(generic.ListView):
@@ -162,31 +157,11 @@ class CreateRecipe(LoginRequiredMixin, generic.CreateView):
     template_name = 'create_recipe_form.html'
     success_url = '/my_recipes/'
 
-    # def get(self, request, *args, **kwargs):
-    #     self.object = None
-    #     form_class = self.get_form_class()
-    #     form = self.get_form(form_class)
-    #     ingredients_form = IngredientsFormSet()
-    #     instructions_form = InstructionsFormSet()
-    #     return self.render_to_response(
-    #         self.get_context_data(
-    #             form=form,
-    #             ingredients_form=ingredients_form,
-    #             instructions_form=instructions_form
-    #         )
-    #     )
-
     def post(self, request, *args, **kwargs):
         self.object = None
         form_class = self.get_form_class()
         form = self.get_form(form_class)
-    #     ingredients_form = IngredientsFormSet(self.request.POST)
-    #     instructions_form = InstructionsFormSet(self.request.POST)
-        if (
-                form.is_valid()
-                # and ingredients_form.is_valid()
-                # and instructions_form.is_valid()
-        ):
+        if (form.is_valid()):
             form.instance.author_id = request.user.id
             form.instance.slug = slugify(form.instance.title)
             return self.form_valid(form)
@@ -195,22 +170,9 @@ class CreateRecipe(LoginRequiredMixin, generic.CreateView):
 
     def form_valid(self, form):
         self.object = form.save()
-        # ingredients_form.instance = self.object
-        # ingredients_form.save()
-        # instructions_form.instance = self.object
-        # instructions_form.save()
         messages.success(
             self.request,
             'Your recipe has been uploaded and will\
              be published by the administrator'
         )
         return HttpResponseRedirect(self.get_success_url())
-
-    # def form_invalid(self, form):
-    #     return self.render_to_response(
-    #         self.get_context_data(
-    #             form=form,
-    #             ingredients_form=ingredients_form,
-    #             instructions_form=instructions_form
-    #         )
-    #     )

@@ -51,16 +51,20 @@
             <h3>Description</h3>
             {{ recipe.description | safe }}
             <div class="row">
-                <div class="col-sm-5">
+                <div class="col-sm-4">
                     <div class="card">
                         <h3>Ingredients</h3>
-                        {{ recipe.ingredients | safe }}
+                        <div class="text-start m-2">
+                            {{ recipe.ingredients | safe }}
+                        </div>
                     </div>
                 </div>
-                <div class="col-sm-7">
+                <div class="col-sm-8">
                     <div class="card">
                         <h3>Instructions</h3>
-                        {{ recipe.instructions | safe }}
+                        <div class="text-start mt-2 me-3">
+                            {{ recipe.instructions | safe }}
+                        </div>                        
                     </div>
                 </div>
             </div>
@@ -112,7 +116,7 @@
                                 <button class="btn btn-light mt-3" type="submit">Submit</button>
                             </form>
                         {% else %}
-                        <h5>Sign in to comment</h5>
+                        <h5><a href="{% url 'account_login' %}">Sign in</a> to comment</h5>
                         {% endif %}
                     </div>
                 </div>

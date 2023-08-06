@@ -22,11 +22,3 @@ class RecipeForm(forms.ModelForm):
             'ingredients',
             'instructions',
         )
-
-
-# IngredientsFormSet = inlineformset_factory(
-#     Recipe, Ingredients, fields=('amount', 'ingredient',), extra=2
-# )
-# InstructionsFormSet = inlineformset_factory(
-#     Recipe, Instructions, fields=('steps',), extra=1
-# )
