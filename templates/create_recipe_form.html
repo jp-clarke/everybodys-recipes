@@ -8,7 +8,7 @@
     <div class="row justify-content-sm-center">
         <div class="col-sm-8 col-md-6 mt-3">
             <h3>Create Recipe:</h3>
-            <form method="post">{% csrf_token %}
+            <form method="post" enctype="multipart/form-data">{% csrf_token %}
                 {{ form | crispy }}
                 <input type="submit" value="Save">
             </form>

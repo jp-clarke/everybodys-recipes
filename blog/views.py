@@ -16,7 +16,7 @@ from .forms import (
 
 class RecipeList(generic.ListView):
     model = Recipe
-    queryset = Recipe.objects.filter(status=1).order_by('date_created')
+    queryset = Recipe.objects.filter(status=1).order_by('-date_created')
     template_name = 'index.html'
     paginate_by = 6
 
@@ -30,7 +30,7 @@ class FavouritesList(generic.ListView):
         return Recipe.objects.filter(
             status=1,
             favourited=self.request.user.id
-            ).order_by('date_created')
+            ).order_by('-date_created')
 
 
 class MyRecipesList(generic.ListView):
@@ -42,7 +42,7 @@ class MyRecipesList(generic.ListView):
         return Recipe.objects.filter(
             status=1,
             author=self.request.user.id
-            ).order_by('date_created')
+            ).order_by('-date_created')
 
 
 class RecipeDetail(View):
