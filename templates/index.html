@@ -24,7 +24,7 @@ All Recipes
                 </a>
                 <div class="card-footer">
                     <p class="card-text text-muted h6">
-                        {{ recipe.date_created }}
+                        {{ recipe.date_created | date:'M d, Y' }}
                         <span class="float-end">
                             {% with recipe.comments.count as total_comments %}
                             <i class="fa-regular fa-comment"></i>
