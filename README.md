@@ -84,6 +84,122 @@
 
 ## Deployment
 
+This project was developed in GitHub and Gitpod from Code Institute's [gitpod template](https://github.com/Code-Institute-Org/gitpod-full-template), and has been deployed to Heroku. The process below requires an ElephantSQL database and Cloudinary storage.
+
+The deployment process closely follows that of Code Institute's **'I Think Therefore I Blog'** walkthrough project and [Cheat Sheet](https://docs.google.com/document/d/1P5CWvS5cYalkQOLeQiijpSViDPogtKM7ZGyqK-yehhQ/edit#heading=h.5s9novsydyp1), and is as follows:
+
+Gitpod Project
+- Create a new workspace using the aforementioned [gitpod template](https://github.com/Code-Institute-Org/gitpod-full-template)
+- Install Django: `pip3 install 'django<4' gunicorn`
+- Install supporting libraries: `pip3 install dj_database_url==0.5.0 psycopg2`
+- Install Cloudinary libraries: `pip3 install dj3-cloudinary-storage`
+- Create requirements.txt file: `pip3 freeze --local > requirements.txt`
+- Create project: `django-admin startproject PROJ_NAME .`
+- Create app: `python3 manage.py startapp APP_NAME`
+- In **settings.py**, add the app to **installed apps** and save file:<br>
+`INSTALLED_APPS = [`<br>
+&nbsp; &nbsp; &nbsp; &nbsp;`…`<br>
+&nbsp; &nbsp; &nbsp; &nbsp;`'APP_NAME',`<br>
+`]`
+- Migrate changes: `python3 manage.py migrate`
+- Run server to test: `python3 manage.py runserver`
+- An error will be returned showing a disallowed hostname. Copy the hostname and add to **allowed hosts** in the **settings.py** file:<br>
+`ALLOWED HOSTS = ['Add hostname here']`
+
+ElephantSQL Database
+- Login to ElephantSQL to access your dashboard
+- Click 'Create New Instance'
+- Set up a plan by selecting **Tiny Turtle (Free)** and entering a **Name** (typically the name of the project). Tags can be left blank
+- Click 'Select Region' and select a data centre near you
+- Click 'Review', confirm details are correct, then click 'Create Instance'
+- From the ElephantSQL dashboard, click on the newly created database name
+- Copy the database URL by clicking the adjacent copy icon
+
+Create Heroku App
+- Login to Heroku
+- From the dashboard, create a new app
+- Give the app a unique name and choose your region (United States or Europe)
+- Click create app
+- Go to the Settings tab
+- Click Reveal Config Vars
+- Add Config Var:<br>
+KEY: DATABASE_URL | PORT: The database url copied from ElephantSQL (starting with postgres://)
+
+Attach Database:
+- Return to Gitpod file explorer and create a new **env.py** file in the top level directory
+- In **env.py**, import os library: `import os`
+- Set environment variables: `os.environ["DATABASE_URL"] = "ElephantSQL database URL"`
+- Add secret key: `os.environ["SECRET_KEY"] = "User defined or generated secret key"`
+- Return to Heroku App and add secret key to Config Vars:<br>
+KEY: SECRET_KEY | PORT: "User defined or generated secret key"<br>
+
+In **settings.py**:
+- Reference env.py below `from pathlib import Path`:<br>
+`import os`<br>
+`import dj_database_url`<br>
+`if os.path.isfile('env.py'):`<br>
+ &nbsp; &nbsp; &nbsp; &nbsp;`import env`
+- Replace SECRET_KEY with that matching the Heroku App:<br>
+`SECRET_KEY = os.environ.get('SECRET_KEY')`
+- Comment out the DATABASES section and add new database:<br>
+`DATABASES = {`<br>
+&nbsp; &nbsp; &nbsp; &nbsp;`'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))`<br>
+`}`
+- Save all files and make migrations from the terminal: `python3 manage.py migrate`
+
+Cloudinary
+- Login to Cloudinary
+- From the dashboard, copy the CLOUDINARY_URL (API Environment Variable) using the 'Copy to clipboard' link
+- Add the copied link to **env.py**: `os.environ["CLOUDINARY_URL"] = "cloudinary://***"`
+
+In Heroku:
+- Add Config Vars:<br>
+KEY: CLOUDINARY_URL | PORT: "cloudinary://***"<br>
+KEY: DISABLE_COLLECTSTATIC | PORT: 1 **(remove before deployment)**<br> 
+KEY: PORT | PORT: 8000<br>
+
+In **settings.py**:
+- Add Cloudinary Libraries to installed apps section in the following order:<br>
+`INSTALLED_APPS = [`<br>
+&nbsp; &nbsp; &nbsp; &nbsp;`…`<br>
+&nbsp; &nbsp; &nbsp; &nbsp;`'cloudinary_storage',`<br>
+&nbsp; &nbsp; &nbsp; &nbsp;`'django.contrib.staticfiles',`<br>
+&nbsp; &nbsp; &nbsp; &nbsp;`'cloudinary',`<br>
+&nbsp; &nbsp; &nbsp; &nbsp;`…`<br>
+`]`
+- Tell Django to use Cloudinary to store media and static files (below `STATIC_URL = '/static/'`):<br>
+`STATICFILES_STORAGE = 'cloudinary_storage.storage.StaticHashedCloudinaryStorage'`<br>
+`STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'),]`<br>
+`STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')`<br>
+<br>
+`MEDIA_URL = '/media/'`<br>
+`DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'`<br>
+- Link file to templates directory (below `BASE_DIR = Path(__file__).resolve().parent.parent`):<br>
+`TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')`<br>
+- Change the templates directory to TEMPLATES_DIR:<br>
+`TEMPLATES = [`<br>
+&nbsp; &nbsp; &nbsp; &nbsp;`{`<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;`…,`<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;`'DIRS': [TEMPLATES_DIR],`<br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;`…,`<br>
+&nbsp; &nbsp; &nbsp; &nbsp;`},`<br>
+`]`
+- Add Heroku Hostname to ALLOWED_HOSTS. This can be found in the Heroku App Settings, under Domains:<br>
+`ALLOWED HOSTS = [`<br>
+&nbsp; &nbsp; &nbsp; &nbsp;`'Heroku Hostname',`<br>
+&nbsp; &nbsp; &nbsp; &nbsp;`'Hostname',`<br>
+`]`<br>
+- Add media, static and templates folders on top level directory
+- Create a **Procfile** in the top level directory
+- Add code to **Procfile**: `web: gunicorn PROJ_NAME.wsgi`
+- Add, Commit and Push
+
+In Heroku
+- Go to the Deploy tab of the Heroku App
+- Connect GitHub account to Heroku
+- Search for the relevant repository to connect to
+- Click on Deploy branch
+
 ## Credits
 
 ## Acknowledgements
