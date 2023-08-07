@@ -82,6 +82,21 @@
 
 ### Bugs
 
+| Bug | Description | Fix |
+| --- | --- | --- |
+| Image not loading from cloudinary | On the recipe_detail template, the image was not being loaded from cloudinary. It was confirmed that the image was being stored on cloudinary, but not being rendered in the template | Fixed by changing the image source from `{{ recipe.recipe_photo }}` to `{{ recipe.recipe_photo.url }}` |
+| ModuleNotFoundError: No module named ‘cripsy_forms’ | Error after installing Django Crispy Forms | In the INSTALLED_APPS in settings.py, cri**s**py_forms was mistyped cri**p**sy_forms. Correcting the type fixed the issue |
+| 'Comment waiting for approval' success message error | 'Comment waiting for approval' success message appears in the comments of a recipe page when user clicks on the favourite button on a recipe, instead of recipe being favourited and number of favourites incrementing | In the RecipeFavourite class, the post function was not defined properly, and was called recipe instead. The issue was fixed when properly defined as a post function |
+| 'Body:' appears next to text field  | On the Edit comment form, the field label (Body:) appears next to the text field | Fixed by adding `labels = {'body': ""}` and `label_suffix = ''` to the Meta class in CommentForm and `{{ form.body }}` instead of `{{ form }}` in the comment_update_form template |
+| TemplateDoesNotExist at /comment_confirm_delete/17 | When user attempts to delete a comment, an error is returned instead of being directed to the comment_confirm_delete template | Fixed by correcting template_name in the DeleteComment view from `'comment_confirm_delete'` to `'comment_confirm_delete.html'` |
+| NoReverseMatch at /delete-comment/10<br>Reverse for 'recipe_detail with no arguments not found | Error when user attempts to delete a comment and return to the recipe page | Fixed by changing `reverse_lazy('recipe_detail')` to `reverse_lazy('recipe_detail', args=[recipe.slug])` |
+| 'Comment' label in front of comment | On the Delete comment form, after 'Are you sure you want to delete the following comment?', the 'Comment' label appears before the comment being referred to | Fixed by changing `{{ comment }}` tp `{{ comment.body }}` on the comment_confirm_delete template |
+| IntegrityError at /create_recipe_form/<br>null value in column "author_id" of relation "blog_recipe" violates not-null constraint | Error when user attempts to create a recipe using the create recipe form | The recipe was being submitted with an emtpy author field. To fix the error, the code `form.instance.author_id = request.user.id` was added to the post method in the CreateRecipe view |
+| IntegrityError at /create_recipe_form/<br>duplicate key value violates unique constraint "blog_recipe_slug_key"<br>DETAIL: Key (slug)=() already exists | Error when user attempts to create a recipe using the create recipe form | The recipe was being submitted with an empty slug field. This was fixed by adding `form.instance.slug = slugify(form.instance.title)` to slugify the submitted recipe title |
+| Page not found (404)<br>The current path, create_recipe_form/my_recipes.html, didn't match any of these | Error when user attempts to create a recipe using the create recipe form | When the recipe was submitted, the user was being redirected to a template relative to the create_recipe_form template, which doesn't exist. This was fixed by adding a / to the start of the success url, which redirected to the template relative to the root site |
+| TypeError at /create_recipe_form/<br>clean() got an unexpected keyword argument 'styles' | Error when applying SummernoteTextField to fields in Recipe model to allow recipe creation for users. Error would appear when user attempts to create a recipe | This is an issue on the django-summernote github (#477), which was fixed by uninstalling version 6.0.0 of bleach and installing version 4.1.0 in its place |
+
+
 ## Deployment
 
 This project was developed in GitHub and Gitpod from Code Institute's [gitpod template](https://github.com/Code-Institute-Org/gitpod-full-template), and has been deployed to Heroku. The process below requires an ElephantSQL database and Cloudinary storage.
