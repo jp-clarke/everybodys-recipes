@@ -45,7 +45,7 @@
     </div>
 
     <div class="row justify-content-sm-center text-center">
-        <div class="col-lg-6 col-md-8 col-sm-10 mb-5 p-0">
+        <div class="col-xl-6 col-lg-8 col-md-10 mb-5">
             {% if 'placeholder' in recipe.recipe_photo.url %}
             <img src="https://res.cloudinary.com/dbnrqjev4/image/upload/v1690840285/pexels-fauxels-3184183_vgtkgv.jpg" class="card-img-top" alt="...">
             {% else %}
@@ -53,8 +53,8 @@
             {% endif %}
             <h3>Description</h3>
             {{ recipe.description | safe }}
-            <div class="row recipe-method">
-                <div class="col-sm-4 mb-3">
+            <div class="row recipe-method p-0">
+                <div class="col-sm-5 mb-3">
                     <div class="card">
                         <h3>Ingredients</h3>
                         <div class="text-start m-2">
@@ -62,7 +62,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-8 mb-3">
+                <div class="col-sm-7 mb-3">
                     <div class="card">
                         <h3>Instructions</h3>
                         <div class="text-start mt-2 me-3">
