@@ -98,8 +98,9 @@ The navigation bar is a customised version of the responsive Bootstrap 5.3 navba
 
 ![navbar-hamburger-expanded](static/documentation/navbar/navbar-hamburger-expanded.PNG)
 
-
 ### User Registration
+
+Users can register and login to the site for features such as creating recipes, commenting, interacting with others and favouriting recipes for later.
 
 #### Sign Up
 
@@ -115,7 +116,47 @@ The navigation bar is a customised version of the responsive Bootstrap 5.3 navba
 
 ### CRUD Functionality
 
+#### Comments - Create, Edit and Delete
+
+Authenticated users can create comments on recipe pages and submit them to administrator for approval. They can also edit and delete their own comments, even if it has not yet been approved.
+
+![comments](static/documentation/comments.PNG)
+
+#### Creating Recipes
+
+Authenticated users can create their own recipes and submit them to the administrator to be published to the site.
+
+![create-recipe](static/documentation/create-recipe.PNG)
+
+When the administrator publishes the recipe, it will appear on the homepage and in the recipe creator's My Recipes page.
+
+![my-recipes](static/documentation/my-recipes.PNG)
+
+#### Favourites
+
+Authenticated users can favourite recipes they like.
+
+![favourited](static/documentation/favourited.PNG)
+
+These will appear in the user's My Favourites page.
+
+![my-favourites](static/documentation/my-favourites.PNG)
+
+Unfavouriting the recipe will remove it from the user's My Favourites page.
+
 ### User Notifications
+
+Messages such as the one below will appear to notify the user of various events.
+
+![signed-in-message](static/documentation/signed-in.PNG)
+
+These messages include:
+- Successfully signed in as 'user'
+- You have signed out
+- Your comment is awaiting approval
+- Your comment has been edited and is awaiting approval
+- Your comment has been deleted
+- Your recipe has been uploaded and will be published by the administrator
 
 ### Features to be Implemented
 
