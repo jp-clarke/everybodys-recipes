@@ -74,6 +74,31 @@ As with the typography, the colour scheme was kept simple to give the user the o
 
 ## Features
 
+### Site Navigation
+
+The navigation bar is a customised version of the responsive Bootstrap 5.3 navbar.
+
+- Navbar when not signed in:
+
+![navbar-signed-out](static/documentation/navbar/navbar-signed-out.PNG)
+
+- Navbar when signed in:
+
+![navbar-signed-in](static/documentation/navbar/navbar-signed-in.PNG)
+
+- Navbar dropdown when signed in:
+
+![navbar-dropdown](static/documentation/navbar/navbar-dropdown.PNG)
+
+- Navbar collapsed for smaller screens:
+
+![navbar-collapsed](static/documentation/navbar/navbar-collapsed.PNG)
+
+- Navbar hamburger expanded for smaller screens:
+
+![navbar-hamburger-expanded](static/documentation/navbar/navbar-hamburger-expanded.PNG)
+
+
 ### User Registration
 
 #### Sign Up
