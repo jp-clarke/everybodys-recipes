@@ -58,7 +58,15 @@ As with the typography, the colour scheme was kept simple to give the user the o
 
 #### Sign Up
 
+![sign-up](static/documentation/user-registration/sign-up.PNG)
 
+#### Sign In
+
+![sign-in](static/documentation/user-registration/sign-in.PNG)
+
+#### Sign Out
+
+![sign-out](static/documentation/user-registration/sign-out.PNG)
 
 ### CRUD Functionality
 
