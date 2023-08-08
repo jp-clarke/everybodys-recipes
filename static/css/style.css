@@ -13,7 +13,10 @@ h6 {
 
 .btn {
     z-index: 1;
-    background-color: white;
+}
+
+.btn-light {
+    background-color: grey !important;
 }
 
 .navbar {
