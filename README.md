@@ -43,6 +43,16 @@
 
 ### Styling
 
+#### Typography
+
+The default font for the site is Open Sans. This was selected mainly due to being optimised for print, web and mobile interfaces - important for a recipes blog as users have the option of printing a recipe for use in kitchen, but are equally likely to simply read the recipe from their mobile device.
+
+#### Colour Scheme
+
+As with the typography, the colour scheme was kept simple to give the user the option of either printing their recipe or viewing with their mobile device. For this reason the colour scheme is predominantly white background with black text, with minimal greys for buttons, borders, etc. The navbar is coloured in a pale primrose, to give a country kitchen type theme.
+
+![Pale Primrose](static/documentation/readme-images/navbar-colour.PNG)
+
 ## Features
 
 ### User Registration
