@@ -105,6 +105,42 @@ No errors returned when checking code with the official W3C validator.
 
 #### Python
 
+The python code was passed through the Code Institute PEP8 linter to confirm that there were no issues.
+
+**Recipe blog app:**
+
+- admin.py:
+![admin.py](static/documentation/readme-images/python-validation/blog/admin.PNG)
+
+- apps.py:
+![apps.py](static/documentation/readme-images/python-validation/blog/apps.PNG)
+
+- forms.py:
+![forms.py](static/documentation/readme-images/python-validation/blog/forms.PNG)
+
+- models.py:
+![models.py](static/documentation/readme-images/python-validation/blog/models.PNG)
+
+- urls.py:
+![urls.py](static/documentation/readme-images/python-validation/blog/urls.PNG)
+
+- views.py:
+![views.py](static/documentation/readme-images/python-validation/blog/views.PNG)
+
+**Everybody's Recipes project**
+
+- asgi.py:
+![asgi.py](static/documentation/readme-images/python-validation/project/asgi.PNG)
+
+- settings.py:
+![settings.py](static/documentation/readme-images/python-validation/project/settings.PNG)
+
+- urls.py:
+![urls.py](static/documentation/readme-images/python-validation/project/urls.PNG)
+
+- wsgi.py:
+![wsgi.py](static/documentation/readme-images/python-validation/project/wsgi.PNG)
+
 #### Javascript
 
 ### Bugs
