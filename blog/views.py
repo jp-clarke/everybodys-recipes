@@ -13,13 +13,13 @@ class RecipeList(generic.ListView):
     model = Recipe
     queryset = Recipe.objects.filter(status=1).order_by('-date_created')
     template_name = 'index.html'
-    paginate_by = 6
+    paginate_by = 9
 
 
 class FavouritesList(generic.ListView):
     model = Recipe
     template_name = 'favourites.html'
-    paginate_by = 6
+    paginate_by = 9
 
     def get_queryset(self):
         return Recipe.objects.filter(
@@ -31,7 +31,7 @@ class FavouritesList(generic.ListView):
 class MyRecipesList(generic.ListView):
     model = Recipe
     template_name = 'my_recipes.html'
-    paginate_by = 6
+    paginate_by = 9
 
     def get_queryset(self):
         return Recipe.objects.filter(
