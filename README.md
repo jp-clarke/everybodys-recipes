@@ -83,6 +83,24 @@ As with the typography, the colour scheme was kept simple to give the user the o
 
 #### HTML
 
+No errors returned when checking code with the official W3C validator.
+
+- Homepage
+
+![Homepage](static/documentation/readme-images/w3c/index.PNG)
+
+- My Recipes
+
+![My Recipes](static/documentation/readme-images/w3c/my_recipes.PNG)
+
+- Favourites
+
+![Homepage](static/documentation/readme-images/w3c/favourites.PNG)
+
+- Recipe Detail
+
+![Homepage](static/documentation/readme-images/w3c/recipe_detail.PNG)
+
 #### CSS
 
 #### Python
