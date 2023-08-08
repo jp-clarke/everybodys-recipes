@@ -1,6 +1,14 @@
 # Everybody's Recipes
 
-## User Experience
+![multi-mockup](static/documentation/multi-mockup.PNG)
+
+Everybody's Recipes is a recipes blog where users can share their recipes, as well as view and comment on other users' recipes. Create your own list of favourites and enjoy the world of food with others!
+
+## UX
+
+### Project Goals
+
+- To create a recipe blog where users can view and create recipes, keep a list of the recipes they've created as well as other users' recipes they like, and interact with other site users by commenting on recipes. 
 
 ### User Stories
 
@@ -8,7 +16,7 @@
 | --- | --- | --- |
 | Site Navigation | Site pagination | As a Site User I can view a paginated list of posts so that I can select a recipe to view |
 | | View Recipes | As a Site User I can click on a post so that I can open a recipe page |
-| | Filter Recipes | As a Site User I can filter posts into categories so that I can easily find the recipe I want |
+| | Filter Recipes | As a Site User I can filter recipes so that I can see the recipes which I created |
 | Authenticated User | User Registration | As a Site User I can register so that I can add comments, likes and rate or favourite recipes |
 | | Commenting | As a Site User I can comment on a recipe so that I can interact with other users |
 | | Managing comments | As a Site User I can edit and delete my comments so that I can manage my contributions and interactions with other users |
@@ -21,11 +29,23 @@
 | | Create draft recipes | As a Site Admin I can create draft recipes so that I can finish writing the content later |
 | | Publish recipes | As a Site Admin I can view user submitted recipes so that I can approve and publish them to the site |
 
-## Design
+### Agile
 
-### Wireframe
+The user stories were managed using the GitHub Projects kanban board.
 
-### Database Model
+![kanban-board](static/documentation/kanban.PNG)
+
+### Design
+
+#### Wireframe
+
+Wireframes of the home page and recipe page were created using Balsamiq.
+
+![homepage-wireframe](static/documentation/home-wireframe.PNG)
+
+![recipe-wireframe](static/documentation/recipe-wireframe.PNG)
+
+#### Database Model
 
 | Model | Key | Name | Type | Notes |
 | --- | --- | --- | --- | --- |
@@ -40,7 +60,7 @@
 | | Many to Many | Favourited | User model | |
 | | | Status | IntegerField | 0 = Draft, 1 = Published |
 
-### Styling
+#### Styling
 
 #### Typography
 
