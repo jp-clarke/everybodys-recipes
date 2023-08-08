@@ -13,7 +13,7 @@ h6 {
 
 .btn {
     z-index: 1;
-    background-color: #dcdcdc;
+    background-color: white;
 }
 
 .navbar {
@@ -29,22 +29,4 @@ h6 {
 
 .card li {
     margin-bottom: 1em;
-}
-
-/* #recipe-ingredients {
-    height: 100%;
-    width: 100%;
-    margin: 0;
-    padding: 0;
-}
-
-#recipe-instructions {
-    height: 100%;
-    width: 100%;
-    margin: 0;
-    padding: 0;
-} */
-
-#btn-recipe-card {
-    background-color: white;
 }
