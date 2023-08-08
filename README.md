@@ -103,6 +103,10 @@ No errors returned when checking code with the official W3C validator.
 
 #### CSS
 
+No errors returned when checking style.css in the W3C CSS validator.
+
+![styles.css](static/documentation/readme-images/css-validation.PNG)
+
 #### Python
 
 The python code was passed through the Code Institute PEP8 linter to confirm that there were no issues.
@@ -142,6 +146,10 @@ The python code was passed through the Code Institute PEP8 linter to confirm tha
 ![wsgi.py](static/documentation/readme-images/python-validation/project/wsgi.PNG)
 
 #### Javascript
+
+No errors returned when checking the JavaScript function in base.html:
+
+![javascript](static/documentation/readme-images/javascript.PNG)
 
 ### Bugs
 
