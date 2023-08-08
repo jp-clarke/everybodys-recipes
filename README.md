@@ -40,7 +40,6 @@
 | | Many to Many | Favourited | User model | |
 | | | Status | IntegerField | 0 = Draft, 1 = Published |
 
-
 ### Styling
 
 #### Typography
