@@ -50,11 +50,15 @@ The default font for the site is Open Sans. This was selected mainly due to bein
 
 As with the typography, the colour scheme was kept simple to give the user the option of either printing their recipe or viewing with their mobile device. For this reason the colour scheme is predominantly white background with black text, with minimal greys for buttons, borders, etc. The navbar is coloured in a pale primrose, to give a country kitchen type theme.
 
-![Pale Primrose](static/documentation/readme-images/navbar-colour.PNG)
+![Pale Primrose](static/documentation/navbar-colour.PNG)
 
 ## Features
 
 ### User Registration
+
+#### Sign Up
+
+
 
 ### CRUD Functionality
 
@@ -87,25 +91,25 @@ No errors returned when checking code with the official W3C validator.
 
 - Homepage
 
-![Homepage](static/documentation/readme-images/w3c/index.PNG)
+![Homepage](static/documentation/w3c/index.PNG)
 
 - My Recipes
 
-![My Recipes](static/documentation/readme-images/w3c/my_recipes.PNG)
+![My Recipes](static/documentation/w3c/my_recipes.PNG)
 
 - Favourites
 
-![Homepage](static/documentation/readme-images/w3c/favourites.PNG)
+![Homepage](static/documentation/w3c/favourites.PNG)
 
 - Recipe Detail
 
-![Homepage](static/documentation/readme-images/w3c/recipe_detail.PNG)
+![Homepage](static/documentation/w3c/recipe_detail.PNG)
 
 #### CSS
 
 No errors returned when checking style.css in the W3C CSS validator.
 
-![styles.css](static/documentation/readme-images/css-validation.PNG)
+![styles.css](static/documentation/css-validation.PNG)
 
 #### Python
 
@@ -114,42 +118,42 @@ The python code was passed through the Code Institute PEP8 linter to confirm tha
 **Recipe blog app:**
 
 - admin.py:
-![admin.py](static/documentation/readme-images/python-validation/blog/admin.PNG)
+![admin.py](static/documentation/python-validation/blog/admin.PNG)
 
 - apps.py:
-![apps.py](static/documentation/readme-images/python-validation/blog/apps.PNG)
+![apps.py](static/documentation/python-validation/blog/apps.PNG)
 
 - forms.py:
-![forms.py](static/documentation/readme-images/python-validation/blog/forms.PNG)
+![forms.py](static/documentation/python-validation/blog/forms.PNG)
 
 - models.py:
-![models.py](static/documentation/readme-images/python-validation/blog/models.PNG)
+![models.py](static/documentation/python-validation/blog/models.PNG)
 
 - urls.py:
-![urls.py](static/documentation/readme-images/python-validation/blog/urls.PNG)
+![urls.py](static/documentation/python-validation/blog/urls.PNG)
 
 - views.py:
-![views.py](static/documentation/readme-images/python-validation/blog/views.PNG)
+![views.py](static/documentation/python-validation/blog/views.PNG)
 
 **Everybody's Recipes project**
 
 - asgi.py:
-![asgi.py](static/documentation/readme-images/python-validation/project/asgi.PNG)
+![asgi.py](static/documentation/python-validation/project/asgi.PNG)
 
 - settings.py:
-![settings.py](static/documentation/readme-images/python-validation/project/settings.PNG)
+![settings.py](static/documentation/python-validation/project/settings.PNG)
 
 - urls.py:
-![urls.py](static/documentation/readme-images/python-validation/project/urls.PNG)
+![urls.py](static/documentation/python-validation/project/urls.PNG)
 
 - wsgi.py:
-![wsgi.py](static/documentation/readme-images/python-validation/project/wsgi.PNG)
+![wsgi.py](static/documentation/python-validation/project/wsgi.PNG)
 
 #### Javascript
 
 No errors returned when checking the JavaScript function in base.html:
 
-![javascript](static/documentation/readme-images/javascript.PNG)
+![javascript](static/documentation/javascript.PNG)
 
 ### Bugs
 
