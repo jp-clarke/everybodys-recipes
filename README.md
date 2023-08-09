@@ -317,6 +317,21 @@ No errors returned when checking the JavaScript function in base.html:
 | Page not found (404)<br>The current path, create_recipe_form/my_recipes.html, didn't match any of these | Error when user attempts to create a recipe using the create recipe form | When the recipe was submitted, the user was being redirected to a template relative to the create_recipe_form template, which doesn't exist. This was fixed by adding a / to the start of the success url, which redirected to the template relative to the root site |
 | TypeError at /create_recipe_form/<br>clean() got an unexpected keyword argument 'styles' | Error when applying SummernoteTextField to fields in Recipe model to allow recipe creation for users. Error would appear when user attempts to create a recipe | This is an issue on the django-summernote github (#477), which was fixed by uninstalling version 6.0.0 of bleach and installing version 4.1.0 in its place |
 
+## Technologies Used
+
+- HTML
+- CSS
+- JavaScript
+- Python
+- Django
+- Bootstrap
+- Cloudinary
+- ElephantSQL
+- Gitpod
+- GitHub
+- Heroku
+
+For a full list of libraries used refer to requirements.txt
 
 ## Deployment
 
@@ -435,6 +450,11 @@ In Heroku
 - Connect GitHub account to Heroku
 - Search for the relevant repository to connect to
 - Click on Deploy branch
+
+Prior to Final Deployment:
+- Ensure that `DEBUG = False` in settings.py
+- Immediately below, add `X_FRAME_OPTIONS = 'SAMEORIGIN'`
+- Remove `KEY: DISABLE_COLLECTSTATIC | PORT: 1` from Config Vars in Heroku
 
 ## Credits
 
