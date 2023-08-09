@@ -158,11 +158,15 @@ These messages include:
 - Your comment has been deleted
 - Your recipe has been uploaded and will be published by the administrator
 
-### Features to be Implemented
+### Features to be Implemented for Future
+
+- It was originally intended for users to have the ability to rate recipes, and there to be an overall star rating for each recipe. This was considered a 'nice to have', but not essential, as the recipe favouriting system was already implemented. This has been documented on the Github Projects kanban board, and the issues associated with the star rating have been archived.
 
 ## Testing
 
 ### Manual Testing
+
+Testing User Stories:
 
 | User Story | Expectation | Outcome | Result |
 | --- | --- | --- | --- |
@@ -193,11 +197,25 @@ No errors returned when checking code with the official W3C validator.
 
 - Favourites
 
-![Homepage](static/documentation/w3c/favourites.PNG)
+![Favourites](static/documentation/w3c/favourites.PNG)
 
 - Recipe Detail
 
-![Homepage](static/documentation/w3c/recipe_detail.PNG)
+![Recipe Detail](static/documentation/w3c/recipe_detail.PNG)
+
+The comment update, comment confirm delete and create recipe forms all returned an empty heading warning, even though each template contained a title within the block heading. However, as these were only warnings and not errors, they were dismissed.
+
+- Comment Update Form
+
+![Comment Update Form](static/documentation/w3c/comment_update_form.PNG)
+
+- Comment Confirm Delete Form
+
+![Comment Confirm Delete Form](static/documentation/w3c/comment_confirm_delete.PNG)
+
+- Create Recipe Form
+
+![Create Recipe Form](static/documentation/w3c/create_recipe_form.PNG)
 
 #### CSS
 
@@ -236,6 +254,8 @@ The python code was passed through the Code Institute PEP8 linter to confirm tha
 
 - settings.py:
 ![settings.py](static/documentation/python-validation/project/settings.PNG)
+
+settings.py returned some minor errors due to lines being longer than standard. As these were related to django auth password validators and cloudinary storage, they left as is.
 
 - urls.py:
 ![urls.py](static/documentation/python-validation/project/urls.PNG)
