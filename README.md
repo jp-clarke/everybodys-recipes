@@ -438,4 +438,20 @@ In Heroku
 
 ## Credits
 
+#### Images
+
+- Recipe images from [Pexels](www.pexels.com), [Unsplash](www.unsplash.com) and [Pixabay](www.pixabay.com)
+- favicon from [flaticon](www.flaticon.com)
+
+#### Code
+
+- The Code Institute 'I Think Therefore I Blog' Django walkthrough project was the basis of this project.
+- Countless hours were spent on [Stack Overflow](wwww.stackoverflow.com), sifting through hundreds of pages, troubleshooting and searching for solutions.
+- Django documentation
+- Bootstrap documentation
+
 ## Acknowledgements
+
+- I'd like to thank my mentor, Jubril Akolade for his continued guidance and support, as well as his patience in guiding me through a difficult project.
+- Many thanks to the Code Institute Slack Community for their willingness to lend a helping hand.
+- A special thanks to the Code Institute tutors, who really came through for me for this project. Would never have made it without you.
