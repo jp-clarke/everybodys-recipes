@@ -181,6 +181,38 @@ Testing User Stories:
 | Control comments | Site admin can approve or disapprove new and edited comments to filter out objectionable comments and manage commenting on recipe pages | When signed in as an administrator, the admin page can be accessed to manage all comments and review, set to approved, or delete comments as required  | Pass |
 | Create draft recipes | Site admin can create draft recipes to be saved and completed at a later date | When signed in as an administrator, the admin page can be accessed to manage all recipes and edit fields, save for later and set to draft or published | Pass |
 
+### Performance Testing
+
+Performance testing was conducted using Google Lighthouse for the home page and recipe pages:
+
+- Home page desktop
+
+![lighthouse-home-desktop](static/documentation/performance/lighthouse-home-desktop.PNG)
+
+- Home page mobile
+
+![lighthouse-home-mobile](static/documentation/performance/lighthouse-home-mobile.PNG)
+
+- Recipe page desktop
+
+![lighthouse-recipe-desktop](static/documentation/performance/lighthouse-recipe-desktop.PNG)
+
+- Recipe page mobile
+
+![lighthouse-recipe-mobile](static/documentation/performance/lighthouse-recipe-mobile.PNG)
+
+### Accessibility
+
+Accessibilty testing was conducted for the home and recipe pages using the WAVE web accessibility evaluation tool. No errors returned:
+
+- Home page
+
+![wave-home](static/documentation/accessibility/wave-home.PNG)
+
+- Recipe page
+
+![wave-recipe](static/documentation/accessibility/wave-recipe.PNG)
+
 ### Validation Testing
 
 #### HTML
